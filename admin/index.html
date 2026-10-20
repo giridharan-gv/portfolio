@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard &bull; Giridharan G V</title>
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Portfolio CSS -->
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+    /* -------------------------------------------------------------
+       ADMIN APP STYLING
+       Dedicated management workstation for Giridharan G V
+       Obsidian Matte Surfaces (#0b0c0e, #131518, #1a1d22)
+       Brushed Champagne Gold Accents (#c5a572, #e6cf9f)
+       Zero Neon, Zero AI gimmicks — humanized, clean, utilitarian.
+       ------------------------------------------------------------- */
+    :root {
+      --admin-sidebar-width: 260px;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top utility bar */
+    .admin-topbar {
+      height: 64px;
+      background: rgba(19, 21, 24, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .admin-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-gold);
+      object-fit: cover;
+    }
+
+    .admin-brand-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    .admin-brand-info span {
+      font-size: 0.75rem;
+      color: var(--color-gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(197, 165, 114, 0.1);
+      color: var(--color-gold-bright);
+      border: 1px solid rgba(197, 165, 114, 0.25);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-gold);
+    }
+
+    .status-dot.active {
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+    }
+
+    .status-dot.warning {
+      background: #fbbf24;
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    }
+
+    /* Main App Layout */
+    .admin-app-body {
+      flex: 1;
+      display: flex;
+    }
+
+    /* Sidebar Navigation */
+    .admin-sidebar {
+      width: var(--admin-sidebar-width);
+      background: #111317;
+      border-right: 1px solid var(--color-border);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .admin-app-body {
+        flex-direction: column;
+      }
+      .admin-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all var(--duration-fast) ease;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      text-align: left;
+      width: 100%;
+    }
+
+    .admin-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-text);
+    }
+
+    .admin-nav-item.active {
+      background: var(--color-gold-soft);
+      color: var(--color-gold-bright);
+      border: 1px solid rgba(197, 165, 114, 0.25);
+    }
+
+    .admin-nav-item svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    /* Content Canvas */
+    .admin-canvas {
+      flex: 1;
+      padding: 2.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .admin-canvas {
+        padding: 1.25rem;
+      }
+    }
+
+    /* Section Panels */
+    .admin-panel {
+      display: none;
+    }
+
+    .admin-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .panel-header-text h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem 0;
+      color: var(--color-text);
+    }
+
+    .panel-header-text p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* Card Panels */
+    .card-panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card-panel-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 0 0 0.4rem 0;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-panel-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin: 0 0 1.5rem 0;
+      line-height: 1.5;
+    }
+
+    /* Toggle switches */
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 1.25rem;
+      background: var(--color-surface-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      gap: 1rem;
+    }
+
+    .toggle-info h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .toggle-info p {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Switch slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #2a2e37;
+      transition: .3s;
+      border-radius: 34px;
+      border: 1px solid var(--color-border);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #8f96a3;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--color-gold);
+      border-color: var(--color-gold);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+      background-color: #0b0c0e;
+    }
+
+    /* Tables & Lists */
+    .data-table-container {
+      overflow-x: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .data-table th {
+      background: #101216;
+      color: var(--color-text-secondary);
+      font-weight: 600;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      letter-spacing: 0.02em;
+    }
+
+    .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text);
+      vertical-align: middle;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-approved {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .badge-pending {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .btn-action-group {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    /* Modal / PIN Shield */
+    .pin-shield-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 12, 14, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .pin-card {
+      background: #14171c;
+      border: 1px solid var(--color-gold);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75), 0 0 40px rgba(197, 165, 114, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.25rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .pin-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 2px solid var(--color-gold);
+      margin: 0 auto 1.25rem auto;
+      object-fit: cover;
+    }
+
+    .pin-input {
+      width: 100%;
+      letter-spacing: 0.4em;
+      font-size: 1.5rem;
+      text-align: center;
+      font-family: monospace;
+      padding: 0.75rem 1rem;
+      background: #0b0c0e;
+      border: 1px solid var(--color-border);
+      color: var(--color-gold-bright);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+    }
+
+    .pin-input:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.2);
+    }
+
+    .pin-hint {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.75rem;
+    }
+
+    /* Toast notification */
+    .toast-banner {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #14171c;
+      border: 1px solid var(--color-gold);
+      color: var(--color-text);
+      padding: 0.85rem 1.35rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-card);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Film Grain Texture Overlay -->
+  <svg class="grain-overlay" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 1 0 0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+
+  <!-- =============================================================
+       SECURITY PIN SHIELD (Protects Admin Dashboard from Public Access)
+       ============================================================= -->
+  <div id="pinShieldOverlay" class="pin-shield-overlay">
+    <div class="pin-card">
+      <img src="../images/giridharan.jpg" alt="Giridharan G V" class="pin-avatar">
+      <h2 style="font-family: var(--font-heading); font-size: 1.85rem; margin: 0 0 0.5rem 0;">Giridharan's Admin App</h2>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1.75rem;">
+        Confidential Operations &amp; Portfolio Control Panel. Enter your administrative access PIN to continue.
+      </p>
+
+      <form id="adminPinForm" onsubmit="handlePinVerification(event)">
+        <input type="password" id="adminPinInput" class="pin-input" placeholder="••••" maxlength="8" autofocus required autocomplete="current-password">
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem 1rem;">
+          Authenticate Access
+        </button>
+      </form>
+      <div id="pinErrorMessage" style="color: #e57373; font-size: 0.8rem; margin-top: 0.75rem; display: none;"></div>
+      <div class="pin-hint">Default Initial PIN: <strong>2026</strong> (can be updated inside settings)</div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       ADMIN APP TOP NAVIGATION BAR
+       ============================================================= -->
+  <header class="admin-topbar">
+    <div class="admin-brand">
+      <img src="../images/giridharan.jpg" alt="Giridharan G V">
+      <div class="admin-brand-info">
+        <h1>Giridharan G V</h1>
+        <span>Operations Console &bull; V1.0</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <button type="button" id="installAppBtn" class="btn btn-secondary btn-sm" style="display:none; border-color:var(--color-gold); color:var(--color-gold-bright);" onclick="installAndroidApp()">
+        <span>📱 Install Android App</span>
+      </button>
+      <div class="status-pill" id="siteStatusIndicator">
+        <span class="status-dot active" id="siteStatusDot"></span>
+        <span id="siteStatusLabel">Portfolio: Live</span>
+      </div>
+
+      <a href="../index.html" target="_blank" class="btn btn-secondary btn-sm" title="View live portfolio in new tab">
+        <span>Open Site</span>
+        <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+
+      <button type="button" id="topbarSyncBtn" class="btn btn-primary btn-sm" onclick="triggerGitHubSync()" title="Push latest state to GitHub">
+        <span>🚀 Push to GitHub</span>
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="lockAdminConsole()" title="Lock panel">
+        Lock
+      </button>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       MAIN WORKSTATION LAYOUT
+       ============================================================= -->
+  <div class="admin-app-body">
+
+    <!-- Left Utility Navigation -->
+    <aside class="admin-sidebar">
+      <button type="button" class="admin-nav-item active" onclick="switchAdminTab('sectionsTab')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Section Visibility</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('maintenanceTab')">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>Maintenance Mode</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('milestonesTab')">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>LeetCode &amp; Milestones</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('buildsTab')">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>Builds &amp; SaaS Apps</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('testimonialsTab')">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Colleague Endorsements</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('tokensTab')">
+        <svg viewBox="0 0 24 24"><line x1="10" y1="13" x2="8" y2="15"/><line x1="14" y1="9" x2="16" y2="7"/><path d="M16 16l4-4a5 5 0 0 0-7-7l-4 4"/><path d="M8 8l-4 4a5 5 0 0 0 7 7l4-4"/></svg>
+        <span>Generate Invite Links</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" onclick="switchAdminTab('settingsTab')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Security &amp; PIN</span>
+      </button>
+    </aside>
+
+    <!-- Right Workspace Canvas -->
+    <main class="admin-canvas">
+
+      <!-- =======================================================
+           TAB 1: SECTION VISIBILITY TOGGLES
+           ======================================================= -->
+      <section id="sectionsTab" class="admin-panel active">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>Optional Section Controls</h2>
+            <p>Toggle individual sections on your portfolio instantly without touching HTML code.</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="saveSectionToggles()">
+            Save Visibility Configuration
+          </button>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Master Section Switches</div>
+          <p class="card-panel-desc">
+            Changes take effect immediately across all visitors browsing your portfolio.
+          </p>
+
+          <div class="toggle-list">
+
+            <!-- Coding Milestones & LeetCode Toggle -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>LeetCode &amp; Coding Milestones Section</h4>
+                <p>Displays your problem counts, data structures consistency, and hackathon prototypes.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_codingMilestones">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Builds & SaaS Projects Toggle -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Builds &amp; Web Applications</h4>
+                <p>Keep hidden until you wish to publicly unveil your live SaaS builds and apps.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_builds">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Colleague Testimonials Toggle -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Colleague Endorsements &amp; Recommendations</h4>
+                <p>Displays verified peer feedback and operational testimonials approved by you.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_testimonials">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Key Performance Indicators / Numbers -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Key Impact Metrics (Numbers Strip)</h4>
+                <p>7+ Years, 40+ Crew Trained, 98.4% SLA Compliance, 14 Daily Corridor Runs.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_numbers">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Certifications Section -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Professional Certification (MS Excel Data Analysis)</h4>
+                <p>Displays verified Macquarie University certification credential.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_certifications">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Career Experience Section -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Career Timeline &amp; Experience</h4>
+                <p>Frontline leadership roles at Scope e-Knowledge, Lumina, and QSR establishments.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_experience">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Skills & Competencies -->
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Core Competencies &amp; Skills Grid</h4>
+                <p>Restaurant operations, crew leadership, guest resolution, route management.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle_skills">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 2: MAINTENANCE MODE
+           ======================================================= -->
+      <section id="maintenanceTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>Portfolio Maintenance Mode</h2>
+            <p>Put your live website in a sleek "Under Architecture Upgrades" state with one toggle.</p>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="toggle-row" style="margin-bottom: 1.5rem; background:#0b0c0e;">
+            <div class="toggle-info">
+              <h4 style="font-size:1.1rem; color:var(--color-gold-bright);">Under Maintenance Switch</h4>
+              <p>When enabled, all public portfolio visitors will see your executive upgrade notice instead of raw work-in-progress content.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="maintenanceToggle" onchange="toggleMaintenanceSwitch(this.checked)">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Maintenance Board Display Style</label>
+            <select id="maintenanceDisplayMode" class="form-select" onchange="saveMaintenanceNotice()">
+              <option value="fullscreen" selected>Full-Screen Takeover Board (Completely pauses public portfolio)</option>
+              <option value="banner">Top Floating Banner Strip (Portfolio remains browseable with warning banner)</option>
+            </select>
+            <div class="form-hint" style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.35rem;">Full-Screen Board is recommended when restructuring sections or updating content.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Status Eyebrow Badge</label>
+            <input type="text" id="maintenanceBadge" class="form-input" value="Scheduled Architecture Upgrade">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Notice Heading</label>
+            <input type="text" id="maintenanceHeading" class="form-input" value="Portfolio Under Scheduled Maintenance">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Visitor Message</label>
+            <textarea id="maintenanceMessage" class="form-textarea" rows="3">We are currently deploying updated enterprise case studies and operational metrics. Service will resume shortly.</textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Estimated Return Window</label>
+            <input type="text" id="maintenanceReturn" class="form-input" value="Returning shortly today">
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="saveMaintenanceNotice()">
+            Update Maintenance Notice
+          </button>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 3: LEETCODE & CODING MILESTONES
+           ======================================================= -->
+      <section id="milestonesTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>LeetCode &amp; Coding Milestones</h2>
+            <p>Highlight your algorithmic consistency and technical problem solving.</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="saveCodingStats()">
+            Save Milestones
+          </button>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">LeetCode Metrics Card</div>
+          <p class="card-panel-desc">Configure your problem-solving counters displayed on your portfolio.</p>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Problems Solved Counter</label>
+              <input type="text" id="lc_solvedCount" class="form-input" value="160+" placeholder="e.g. 160+, 200+">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">LeetCode Profile URL</label>
+              <input type="url" id="lc_profileUrl" class="form-input" value="https://leetcode.com" placeholder="https://leetcode.com/u/your-username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Focus Areas / Description</label>
+            <input type="text" id="lc_description" class="form-input" value="Daily practice focusing on Arrays, Two-Pointer patterns, Sliding Window, and Hash Maps.">
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title" style="justify-content:space-between;">
+            <span>Hackathons &amp; Prototype Builds</span>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="promptAddHackathon()">+ Add Hackathon</button>
+          </div>
+          <p class="card-panel-desc">List hackathon sprints, operational challenges, or rapid prototypes you built.</p>
+
+          <div id="hackathonListContainer"></div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 4: BUILDS & SAAS APPLICATIONS
+           ======================================================= -->
+      <section id="buildsTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>Builds &amp; Web Applications</h2>
+            <p>Manage your real software builds, future web apps, and client tools.</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="promptAddBuild()">+ Add New Build</button>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Active Portfolio Projects</div>
+          <p class="card-panel-desc">These applications appear in your dynamic Builds section when that section is turned ON.</p>
+
+          <div id="buildsListContainer"></div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 5: COLLEAGUE TESTIMONIALS MODERATION
+           ======================================================= -->
+      <section id="testimonialsTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>Colleague Endorsements &amp; Recommendations</h2>
+            <p>Review and moderate feedback submitted by peers and leadership.</p>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Testimonial Moderation Inbox</div>
+          <p class="card-panel-desc">
+            Only testimonials marked as <strong>Approved</strong> will be visible to recruiters on your public portfolio.
+          </p>
+
+          <div id="testimonialsListContainer"></div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 6: ONE-TIME INVITE LINK GENERATOR
+           ======================================================= -->
+      <section id="tokensTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>One-Time Colleague Invitation Links</h2>
+            <p>Generate secure single-use links to send to peers via WhatsApp, Email, or LinkedIn.</p>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Generate New Invitation Token</div>
+          <p class="card-panel-desc">
+            Enter the colleague's name and organization. The system generates a single-use URL they can complete in 2 minutes.
+          </p>
+
+          <form id="tokenGenForm" onsubmit="handleTokenGeneration(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Colleague Name</label>
+                <input type="text" id="tokenGenName" class="form-input" placeholder="e.g. Rajesh Kumar" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Company / Shared Workplace</label>
+                <input type="text" id="tokenGenCompany" class="form-input" placeholder="e.g. Scope e-Knowledge Center" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Generate Single-Use Colleague Link
+            </button>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Active &amp; Past Invitation Tokens</div>
+          <p class="card-panel-desc">Tokens automatically mark as used once your colleague completes their recommendation.</p>
+
+          <div class="data-table-container">
+            <table class="data-table" id="tokensTable">
+              <thead>
+                <tr>
+                  <th>Recipient</th>
+                  <th>Company</th>
+                  <th>Shareable Invitation Link</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tokensTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           TAB 7: SECURITY & PIN SETTINGS
+           ======================================================= -->
+      <section id="settingsTab" class="admin-panel">
+        <div class="panel-header">
+          <div class="panel-header-text">
+            <h2>Admin Security &amp; Data Backup</h2>
+            <p>Manage your access credentials and export full portfolio state.</p>
+          </div>
+        </div>
+
+        <div class="card-panel" style="border-color: rgba(197, 165, 114, 0.4);">
+          <div class="card-panel-title" style="justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span>GitHub Live Cloud Synchronization</span>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="triggerGitHubSync()" id="btnSyncNow">
+              <span>🚀 Push Changes to GitHub</span>
+            </button>
+          </div>
+          <p class="card-panel-desc">
+            Connects your Admin App directly to your GitHub repository. Every time you toggle maintenance, approve a colleague review, or add a build, clicking <strong>Push Changes to GitHub</strong> commits directly to your live repository with zero third-party database costs!
+          </p>
+
+          <form id="githubConfigForm" onsubmit="handleSaveGitHubConfig(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">GitHub Username / Organization</label>
+                <input type="text" id="gh_owner" class="form-input" placeholder="e.g. giridharan-ops" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Repository Name</label>
+                <input type="text" id="gh_repo" class="form-input" placeholder="e.g. portfolio" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Target Branch</label>
+                <input type="text" id="gh_branch" class="form-input" value="main" placeholder="main" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">File Path in Repo</label>
+                <input type="text" id="gh_path" class="form-input" value="portfolio-data.json" placeholder="portfolio-data.json" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">GitHub Personal Access Token (classic or fine-grained)</label>
+              <input type="password" id="gh_token" class="form-input" placeholder="ghp_••••••••••••••••••••••••••••••••" required autocomplete="off">
+              <div class="form-hint">Stored safely in your device's browser only. Requires <code>repo</code> contents write permission.</div>
+            </div>
+
+            <button type="submit" class="btn btn-secondary btn-sm">
+              Save GitHub Configuration
+            </button>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Change Administrative PIN</div>
+          <p class="card-panel-desc">Update the 4 to 8 digit numerical PIN used to unlock this Admin App.</p>
+
+          <form id="changePinForm" onsubmit="handleChangePin(event)" style="max-width: 420px;">
+            <div class="form-group">
+              <label class="form-label">New Administrative PIN</label>
+              <input type="password" id="newAdminPin" class="form-input" placeholder="Enter 4-8 digits" minlength="4" maxlength="8" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm New PIN</label>
+              <input type="password" id="confirmAdminPin" class="form-input" placeholder="Re-enter new PIN" minlength="4" maxlength="8" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Admin PIN</button>
+          </form>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">Export / Backup Portfolio State</div>
+          <p class="card-panel-desc">Download a complete snapshot of your portfolio configuration as a JSON file.</p>
+
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <button type="button" class="btn btn-secondary" onclick="exportDataJson()">
+              Download portfolio-data.json
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="resetToInitialDefaults()" style="color: #e57373;">
+              Reset to Factory Seed Data
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBanner" class="toast-banner">
+    <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--color-gold);fill:none;stroke-width:2;"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMessage">Operation successful</span>
+  </div>
+
+  <!-- Shared Data Adapter -->
+  <script src="../assets/portfolio-bridge.js"></script>
+
+  <script>
+    /* -------------------------------------------------------------
+       ADMIN APP CONTROLLER
+       Human-written, structured state management.
+       ------------------------------------------------------------- */
+    var authenticated = false;
+    var currentData = null;
+
+    // Toast Notification Helper
+    function showToast(msg) {
+      var toast = document.getElementById('toastBanner');
+      var toastText = document.getElementById('toastMessage');
+      toastText.textContent = msg;
+      toast.style.display = 'inline-flex';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2500);
+    }
+
+    // Check PIN Authentication
+    async function handlePinVerification(event) {
+      if (event) event.preventDefault();
+      var input = document.getElementById('adminPinInput').value;
+      var errEl = document.getElementById('pinErrorMessage');
+
+      var valid = await PortfolioBridge.verifyAdminPin(input);
+      if (valid) {
+        authenticated = true;
+        sessionStorage.setItem('giridharan_admin_auth', 'true');
+        document.getElementById('pinShieldOverlay').style.display = 'none';
+        loadAdminState();
+      } else {
+        errEl.textContent = 'Incorrect administrative PIN. Please try again.';
+        errEl.style.display = 'block';
+      }
+    }
+
+    function lockAdminConsole() {
+      sessionStorage.removeItem('giridharan_admin_auth');
+      window.location.reload();
+    }
+
+    // Tab Navigation
+    function switchAdminTab(tabId) {
+      document.querySelectorAll('.admin-nav-item').forEach(function(item) {
+        item.classList.remove('active');
+      });
+      document.querySelectorAll('.admin-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+
+      var target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+    }
+
+    // Load initial state into UI controls
+    async function loadAdminState() {
+      loadGitHubConfigUI();
+      currentData = await PortfolioBridge.init();
+
+      // Maintenance status
+      var isMaint = currentData.settings && currentData.settings.maintenanceMode && currentData.settings.maintenanceMode.enabled;
+      document.getElementById('maintenanceToggle').checked = isMaint;
+      document.getElementById('siteStatusDot').className = isMaint ? 'status-dot warning' : 'status-dot active';
+      document.getElementById('siteStatusLabel').textContent = isMaint ? 'Portfolio: In Maintenance' : 'Portfolio: Live';
+
+      if (currentData.settings.maintenanceMode) {
+        document.getElementById('maintenanceBadge').value = currentData.settings.maintenanceMode.badge || '';
+        document.getElementById('maintenanceHeading').value = currentData.settings.maintenanceMode.heading || '';
+        document.getElementById('maintenanceMessage').value = currentData.settings.maintenanceMode.message || '';
+        document.getElementById('maintenanceReturn').value = currentData.settings.maintenanceMode.estimatedReturn || '';
+        var dMode = document.getElementById('maintenanceDisplayMode');
+        if (dMode) dMode.value = currentData.settings.maintenanceMode.displayMode || 'fullscreen';
+      }
+
+      // Section visibility toggles
+      var vis = currentData.settings.visibility || {};
+      for (var key in vis) {
+        var el = document.getElementById('toggle_' + key);
+        if (el) el.checked = !!vis[key];
+      }
+
+      // Coding stats
+      if (currentData.codingMilestones && currentData.codingMilestones.stats) {
+        var lc = currentData.codingMilestones.stats.find(function(s) { return s.platform === 'LeetCode'; });
+        if (lc) {
+          document.getElementById('lc_solvedCount').value = lc.highlight;
+          document.getElementById('lc_profileUrl').value = lc.profileUrl || '';
+          document.getElementById('lc_description').value = lc.description || '';
+        }
+      }
+
+      // Render dynamic lists
+      renderHackathonsList();
+      renderBuildsList();
+      renderTestimonialsList();
+      renderTokensTable();
+    }
+
+    // Save section toggles
+    function saveSectionToggles() {
+      var vis = currentData.settings.visibility;
+      vis.codingMilestones = document.getElementById('toggle_codingMilestones').checked;
+      vis.builds = document.getElementById('toggle_builds').checked;
+      vis.testimonials = document.getElementById('toggle_testimonials').checked;
+      vis.numbers = document.getElementById('toggle_numbers').checked;
+      vis.certifications = document.getElementById('toggle_certifications').checked;
+      vis.experience = document.getElementById('toggle_experience').checked;
+      vis.skills = document.getElementById('toggle_skills').checked;
+
+      PortfolioBridge.saveData(currentData);
+      showToast('Section visibility updated successfully!');
+    }
+
+    // Toggle maintenance switch
+    function toggleMaintenanceSwitch(enabled) {
+      currentData.settings.maintenanceMode.enabled = enabled;
+      PortfolioBridge.saveData(currentData);
+
+      document.getElementById('siteStatusDot').className = enabled ? 'status-dot warning' : 'status-dot active';
+      document.getElementById('siteStatusLabel').textContent = enabled ? 'Portfolio: In Maintenance' : 'Portfolio: Live';
+      showToast(enabled ? 'Maintenance mode enabled for portfolio' : 'Portfolio is now live to the public');
+    }
+
+    // Save maintenance message text
+    function saveMaintenanceNotice() {
+      currentData.settings.maintenanceMode.badge = document.getElementById('maintenanceBadge').value;
+      currentData.settings.maintenanceMode.heading = document.getElementById('maintenanceHeading').value;
+      currentData.settings.maintenanceMode.message = document.getElementById('maintenanceMessage').value;
+      currentData.settings.maintenanceMode.estimatedReturn = document.getElementById('maintenanceReturn').value;
+      var dMode = document.getElementById('maintenanceDisplayMode');
+      if (dMode) currentData.settings.maintenanceMode.displayMode = dMode.value;
+
+      PortfolioBridge.saveData(currentData);
+      showToast('Maintenance notice details updated!');
+    }
+
+    // Save coding milestones
+    function saveCodingStats() {
+      var lc = currentData.codingMilestones.stats.find(function(s) { return s.platform === 'LeetCode'; });
+      if (lc) {
+        lc.highlight = document.getElementById('lc_solvedCount').value;
+        lc.profileUrl = document.getElementById('lc_profileUrl').value;
+        lc.description = document.getElementById('lc_description').value;
+      }
+      PortfolioBridge.saveData(currentData);
+      showToast('LeetCode & coding metrics saved!');
+    }
+
+    // Render Hackathons List
+    function renderHackathonsList() {
+      var container = document.getElementById('hackathonListContainer');
+      var list = (currentData.codingMilestones && currentData.codingMilestones.hackathons) || [];
+
+      if (!list.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted); font-size:0.85rem;">No hackathons listed yet.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(function(item, idx) {
+        return '<div style="background:var(--color-surface-elevated); border:1px solid var(--color-border); border-radius:var(--radius-sm); padding:1rem 1.25rem; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center; gap:1rem;">' +
+          '<div>' +
+            '<div style="font-weight:600; color:var(--color-text); font-size:0.95rem;">' + item.projectTitle + ' &bull; <span style="color:var(--color-gold-bright); font-size:0.8rem;">' + item.resultBadge + '</span></div>' +
+            '<div style="font-size:0.8rem; color:var(--color-text-muted); margin-top:0.2rem;">' + item.name + ' (' + item.year + ') &mdash; ' + item.organizer + '</div>' +
+            '<div style="font-size:0.8rem; color:var(--color-text-secondary); margin-top:0.35rem;">' + item.summary + '</div>' +
+          '</div>' +
+          '<button type="button" class="btn btn-secondary btn-sm" onclick="removeHackathon(' + idx + ')" style="color:#e57373;">Remove</button>' +
+        '</div>';
+      }).join('');
+    }
+
+    function promptAddHackathon() {
+      var project = prompt('Project Title (e.g. FleetDispatch):');
+      if (!project) return;
+      var name = prompt('Hackathon Name (e.g. Smart Logistics Sprint):', 'Tech Sprint');
+      var org = prompt('Organizer:', 'Innovation Forum');
+      var year = prompt('Year:', '2026');
+      var badge = prompt('Result Badge (e.g. Finalist, Top 10, Completed):', 'Finalist');
+      var summary = prompt('Short Summary:', 'Designed rapid turnaround dashboard.');
+
+      currentData.codingMilestones.hackathons.push({
+        id: 'hackathon-' + Date.now(),
+        projectTitle: project,
+        name: name,
+        organizer: org,
+        year: year,
+        resultBadge: badge,
+        summary: summary
+      });
+
+      PortfolioBridge.saveData(currentData);
+      renderHackathonsList();
+      showToast('Hackathon added!');
+    }
+
+    function removeHackathon(idx) {
+      if (confirm('Remove this hackathon entry?')) {
+        currentData.codingMilestones.hackathons.splice(idx, 1);
+        PortfolioBridge.saveData(currentData);
+        renderHackathonsList();
+        showToast('Hackathon removed.');
+      }
+    }
+
+    // Render Builds List
+    function renderBuildsList() {
+      var container = document.getElementById('buildsListContainer');
+      var list = currentData.builds || [];
+
+      if (!list.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted); font-size:0.85rem;">No builds added yet. Click "+ Add New Build" to add one.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(function(item, idx) {
+        return '<div style="background:var(--color-surface-elevated); border:1px solid var(--color-border); border-radius:var(--radius-sm); padding:1.25rem; margin-bottom:1rem;">' +
+          '<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;">' +
+            '<div>' +
+              '<h4 style="margin:0 0 0.25rem 0; font-size:1.05rem; color:var(--color-text);">' + item.title + '</h4>' +
+              '<p style="margin:0 0 0.5rem 0; font-size:0.85rem; color:var(--color-gold-bright);">' + item.tagline + '</p>' +
+              '<p style="margin:0 0 0.75rem 0; font-size:0.8rem; color:var(--color-text-muted); line-height:1.4;">' + item.summary + '</p>' +
+              '<div style="display:flex; gap:0.4rem; flex-wrap:wrap;">' +
+                (item.techStack || []).map(function(t) { return '<span class="chip" style="font-size:0.7rem; padding:0.15rem 0.5rem;">' + t + '</span>'; }).join('') +
+              '</div>' +
+            '</div>' +
+            '<div class="btn-action-group">' +
+              '<button type="button" class="btn btn-secondary btn-sm" onclick="removeBuild(' + idx + ')" style="color:#e57373;">Delete</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function promptAddBuild() {
+      var title = prompt('Application Title (e.g. Operations Tracking Suite):');
+      if (!title) return;
+      var tagline = prompt('Tagline:', 'Take control of your money.');
+      var category = prompt('Category (e.g. Web Application (SaaS)):', 'Web Application (SaaS)');
+      var techStackRaw = prompt('Tech Stack (comma separated):', 'React 19, TypeScript, Tailwind CSS, Recharts');
+      var liveUrl = prompt('Live Demo URL (or relative path):', '');
+      var summary = prompt('Short summary of what it solves:');
+
+      currentData.builds.push({
+        id: 'build-' + Date.now(),
+        title: title,
+        tagline: tagline,
+        category: category,
+        status: 'Completed Build',
+        techStack: techStackRaw ? techStackRaw.split(',').map(function(s) { return s.trim(); }) : [],
+        liveUrl: liveUrl || '',
+        summary: summary || '',
+        featured: true,
+        date: new Date().toISOString().slice(0, 7)
+      });
+
+      PortfolioBridge.saveData(currentData);
+      renderBuildsList();
+      showToast('New build added!');
+    }
+
+    function removeBuild(idx) {
+      if (confirm('Delete this build?')) {
+        currentData.builds.splice(idx, 1);
+        PortfolioBridge.saveData(currentData);
+        renderBuildsList();
+        showToast('Build deleted.');
+      }
+    }
+
+    // Render Testimonials List
+    function renderTestimonialsList() {
+      var container = document.getElementById('testimonialsListContainer');
+      var list = currentData.testimonials || [];
+
+      if (!list.length) {
+        container.innerHTML = '<p style="color:var(--color-text-muted); font-size:0.85rem;">No testimonials received yet. Send a link using the "Generate Invite Links" tab.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(function(item, idx) {
+        var isApproved = item.status === 'approved';
+        return '<div style="background:var(--color-surface-elevated); border:1px solid var(--color-border); border-radius:var(--radius-sm); padding:1.25rem; margin-bottom:1rem;">' +
+          '<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap;">' +
+            '<div>' +
+              '<div style="display:flex; align-items:center; gap:0.6rem;">' +
+                '<strong style="font-size:1rem; color:var(--color-text);">' + item.name + '</strong>' +
+                '<span class="' + (isApproved ? 'badge-approved' : 'badge-pending') + '">' + item.status.toUpperCase() + '</span>' +
+              '</div>' +
+              '<div style="font-size:0.8rem; color:var(--color-gold-bright); margin-top:0.2rem;">' + item.role + ' &bull; ' + item.company + ' (' + item.workPeriod + ')</div>' +
+              '<div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.2rem;">Relationship: ' + item.relationship + '</div>' +
+            '</div>' +
+            '<div class="btn-action-group">' +
+              (isApproved
+                ? '<button type="button" class="btn btn-secondary btn-sm" onclick="setTestimonialStatus(' + idx + ', \'pending\')">Unpublish</button>'
+                : '<button type="button" class="btn btn-primary btn-sm" onclick="setTestimonialStatus(' + idx + ', \'approved\')">Approve &amp; Publish</button>'
+              ) +
+              '<button type="button" class="btn btn-secondary btn-sm" onclick="removeTestimonial(' + idx + ')" style="color:#e57373;">Delete</button>' +
+            '</div>' +
+          '</div>' +
+          '<blockquote style="margin:1rem 0 0 0; padding-left:1rem; border-left:2px solid var(--color-gold); font-size:0.85rem; color:var(--color-text-secondary); line-height:1.5;">' +
+            item.content +
+          '</blockquote>' +
+        '</div>';
+      }).join('');
+    }
+
+    function setTestimonialStatus(idx, status) {
+      currentData.testimonials[idx].status = status;
+      if (status === 'approved') {
+        currentData.testimonials[idx].approvedAt = new Date().toISOString();
+      }
+      PortfolioBridge.saveData(currentData);
+      renderTestimonialsList();
+      showToast('Testimonial status updated to ' + status);
+    }
+
+    function removeTestimonial(idx) {
+      if (confirm('Permanently delete this recommendation?')) {
+        currentData.testimonials.splice(idx, 1);
+        PortfolioBridge.saveData(currentData);
+        renderTestimonialsList();
+        showToast('Testimonial deleted.');
+      }
+    }
+
+    // One-Time Token Generation
+    function handleTokenGeneration(event) {
+      event.preventDefault();
+      var name = document.getElementById('tokenGenName').value;
+      var company = document.getElementById('tokenGenCompany').value;
+
+      var record = PortfolioBridge.createFeedbackToken(name, company);
+      currentData = PortfolioBridge.getData();
+      renderTokensTable();
+
+      document.getElementById('tokenGenName').value = '';
+      document.getElementById('tokenGenCompany').value = '';
+      showToast('Invitation token generated for ' + name + '!');
+    }
+
+    function renderTokensTable() {
+      var tbody = document.getElementById('tokensTableBody');
+      var list = currentData.feedbackTokens || [];
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--color-text-muted);">No invitation tokens generated yet.</td></tr>';
+        return;
+      }
+
+      // Base URL resolution works locally and in production deployment
+      var baseUrl = window.location.origin + window.location.pathname.replace('/admin/index.html', '').replace('/admin/', '') + '/feedback.html';
+
+      tbody.innerHTML = list.map(function(item, idx) {
+        var inviteUrl = baseUrl + '?token=' + item.token;
+        return '<tr>' +
+          '<td><strong>' + item.recipientName + '</strong></td>' +
+          '<td>' + item.suggestedCompany + '</td>' +
+          '<td><code style="font-size:0.75rem; background:#0b0c0e; padding:0.25rem 0.5rem; border-radius:3px; color:var(--color-gold-bright);">' + item.token + '</code></td>' +
+          '<td>' + (item.used ? '<span class="badge-approved">COMPLETED</span>' : '<span class="badge-pending">ACTIVE</span>') + '</td>' +
+          '<td>' +
+            '<button type="button" class="btn btn-secondary btn-sm" onclick="copyInviteLink(\'' + inviteUrl + '\')">Copy Link</button>' +
+          '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function copyInviteLink(url) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function() {
+          showToast('Invitation link copied to clipboard!');
+        });
+      } else {
+        prompt('Copy this link to send to your colleague:', url);
+      }
+    }
+
+    // Security PIN Management
+    async function handleChangePin(event) {
+      event.preventDefault();
+      var pin1 = document.getElementById('newAdminPin').value;
+      var pin2 = document.getElementById('confirmAdminPin').value;
+
+      if (pin1 !== pin2) {
+        alert('PIN entries do not match. Please verify and retry.');
+        return;
+      }
+
+      var res = await PortfolioBridge.updateAdminPin(pin1);
+      if (res.success) {
+        document.getElementById('newAdminPin').value = '';
+        document.getElementById('confirmAdminPin').value = '';
+        showToast('Administrative access PIN updated successfully!');
+      } else {
+        alert(res.message);
+      }
+    }
+
+    // GitHub Sync Handlers
+    function loadGitHubConfigUI() {
+      var cfg = PortfolioBridge.getGitHubConfig();
+      if (cfg) {
+        if (document.getElementById('gh_owner')) document.getElementById('gh_owner').value = cfg.owner || '';
+        if (document.getElementById('gh_repo')) document.getElementById('gh_repo').value = cfg.repo || '';
+        if (document.getElementById('gh_branch')) document.getElementById('gh_branch').value = cfg.branch || 'main';
+        if (document.getElementById('gh_path')) document.getElementById('gh_path').value = cfg.filePath || 'portfolio-data.json';
+        if (document.getElementById('gh_token')) document.getElementById('gh_token').value = cfg.token || '';
+      }
+    }
+
+    function handleSaveGitHubConfig(event) {
+      if (event) event.preventDefault();
+      var cfg = {
+        owner: document.getElementById('gh_owner').value.trim(),
+        repo: document.getElementById('gh_repo').value.trim(),
+        branch: document.getElementById('gh_branch').value.trim() || 'main',
+        filePath: document.getElementById('gh_path').value.trim() || 'portfolio-data.json',
+        token: document.getElementById('gh_token').value.trim()
+      };
+      PortfolioBridge.saveGitHubConfig(cfg);
+      showToast('GitHub configuration saved safely on device!');
+    }
+
+    async function triggerGitHubSync() {
+      var btn = document.getElementById('btnSyncNow');
+      var topBtn = document.getElementById('topbarSyncBtn');
+      if (btn) btn.disabled = true;
+      if (topBtn) topBtn.disabled = true;
+
+      showToast('Connecting to GitHub API...');
+
+      var res = await PortfolioBridge.syncToGitHub('Update portfolio via Admin App');
+
+      if (btn) btn.disabled = false;
+      if (topBtn) topBtn.disabled = false;
+
+      if (res.success) {
+        showToast(res.message);
+      } else {
+        alert('GitHub Sync: ' + res.message);
+      }
+    }
+
+    // JSON export
+    function exportDataJson() {
+      var jsonStr = JSON.stringify(currentData, null, 2);
+      var blob = new Blob([jsonStr], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('portfolio-data.json downloaded!');
+    }
+
+    function resetToInitialDefaults() {
+      if (confirm('Reset all portfolio configuration to factory defaults?')) {
+        currentData = PortfolioBridge.resetToDefaults();
+        loadAdminState();
+        showToast('Data reset to defaults.');
+      }
+    }
+
+    // Check existing session
+    window.addEventListener('DOMContentLoaded', function() {
+      if (sessionStorage.getItem('giridharan_admin_auth') === 'true') {
+        document.getElementById('pinShieldOverlay').style.display = 'none';
+        loadAdminState();
+      }
+    });
+  </script>
+  <script>
+    // PWA & Android Installation Handler
+    var deferredPrompt;
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      var btn = document.getElementById('installAppBtn');
+      if (btn) btn.style.display = 'inline-flex';
+    });
+
+    function installAndroidApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(choice) {
+          if (choice.outcome === 'accepted') {
+            var btn = document.getElementById('installAppBtn');
+            if (btn) btn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      }
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js').catch(function() {});
+      });
+    }
+  </script>
+</body>
+</html>
