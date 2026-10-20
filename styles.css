@@ -2423,3 +2423,111 @@ html[data-theme="light"] .mobile-nav-drawer {
   gap: 0.75rem;
   align-items: center;
 }
+
+
+/* -------------------------------------------------------------
+   COMPREHENSIVE MOBILE & TABLET RESPONSIVENESS OVERRIDES
+   Ensures seamless fluid experience across iPhone, Android, iPad & Desktop
+   ------------------------------------------------------------- */
+
+/* Tablet & Mobile (under 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Executive Typography scaling on mobile */
+  .section-title {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-intro {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Maintenance overlay responsiveness */
+  .maintenance-screen-card {
+    padding: 2rem 1.25rem !important;
+    max-width: 95% !important;
+  }
+
+  .maintenance-screen-title {
+    font-size: 1.75rem !important;
+  }
+
+  .maintenance-screen-msg {
+    font-size: 0.9rem !important;
+  }
+
+  .maintenance-banner-strip {
+    font-size: 0.775rem !important;
+    padding: 0.65rem 1rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Milestone numbers and cards */
+  .milestone-stat-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .milestone-number {
+    font-size: 2.5rem !important;
+  }
+
+  /* Testimonial cards */
+  .testimonial-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .testimonial-text {
+    font-size: 0.875rem !important;
+  }
+
+  /* Contact section stack */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Small Smartphone Devices (under 480px: Galaxy, Pixel, iPhone mini) */
+@media (max-width: 480px) {
+  .site-header .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .logo-text .logo-name {
+    font-size: 1.05rem !important;
+  }
+
+  .logo-text .logo-role {
+    font-size: 0.7rem !important;
+  }
+
+  .section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .header-actions {
+    gap: 0.4rem !important;
+  }
+
+  .theme-toggle-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .mobile-menu-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
