@@ -149,12 +149,73 @@
       gap: 1.25rem;
     }
 
-    @media (max-width: 640px) {
+    /* Fluid Mobile & Tablet Responsive Enhancements */
+    @media (max-width: 768px) {
+      .portal-main {
+        padding: 1.5rem 0.75rem;
+      }
+
+      .portal-card {
+        padding: 1.75rem 1.25rem;
+        border-radius: var(--radius-md);
+      }
+
+      .portal-title {
+        font-size: 1.65rem;
+        line-height: 1.25;
+      }
+
+      .portal-subtitle {
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+      }
+
       .form-grid-2 {
         grid-template-columns: 1fr;
+        gap: 0;
       }
+
+      .prompt-chips {
+        gap: 0.35rem;
+      }
+
+      .prompt-chip {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.55rem;
+      }
+
+      .portal-brand-text h1 {
+        font-size: 1.1rem;
+      }
+
+      .portal-brand-text p {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .portal-nav .container {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .portal-nav .container .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
       .portal-card {
-        padding: 1.5rem;
+        padding: 1.35rem 1rem;
+      }
+
+      .portal-title {
+        font-size: 1.45rem;
+      }
+
+      .portal-submit-btn {
+        font-size: 0.875rem;
+        padding: 0.85rem 1rem;
       }
     }
 
