@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Colleague Endorsement &amp; Recommendation | Giridharan G V</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Portfolio CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* -------------------------------------------------------------
+       COLLEAGUE FEEDBACK PORTAL STYLING
+       Clean, single-purpose application interface
+       Zero neon tones — pure matte obsidian & champagne accents
+       ------------------------------------------------------------- */
+    .portal-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      position: relative;
+    }
+
+    .portal-nav {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+      background: rgba(11, 12, 14, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .portal-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .portal-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-gold);
+      object-fit: cover;
+    }
+
+    .portal-brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    .portal-brand-text p {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    .portal-main {
+      flex: 1;
+      padding: 3rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .portal-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      background: var(--color-gold-soft);
+      color: var(--color-gold-bright);
+      border: 1px solid rgba(197, 165, 114, 0.25);
+      margin-bottom: 1.25rem;
+    }
+
+    .portal-title {
+      font-family: var(--font-heading);
+      font-size: 2.125rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--color-text);
+      margin: 0 0 0.75rem 0;
+    }
+
+    .portal-subtitle {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .invitation-alert {
+      background: rgba(197, 165, 114, 0.06);
+      border-left: 3px solid var(--color-gold);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .invitation-alert strong {
+      color: var(--color-gold-bright);
+      font-weight: 600;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .portal-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.02em;
+    }
+
+    .form-label .required {
+      color: var(--color-gold-bright);
+      margin-left: 0.2rem;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--color-text);
+      transition: border-color var(--duration-fast) var(--ease-out-cubic);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.15);
+    }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .prompt-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0.65rem 0 0.85rem 0;
+    }
+
+    .prompt-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed var(--color-border);
+      color: var(--color-text-muted);
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all var(--duration-fast) ease;
+    }
+
+    .prompt-chip:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold-bright);
+      background: var(--color-gold-soft);
+    }
+
+    .consent-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin: 1.5rem 0;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .consent-box input[type="checkbox"] {
+      margin-top: 0.2rem;
+      accent-color: var(--color-gold);
+      cursor: pointer;
+    }
+
+    .portal-submit-btn {
+      width: 100%;
+      background: var(--color-gold);
+      color: #0b0c0e;
+      border: none;
+      padding: 0.95rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all var(--duration-normal) var(--ease-out-cubic);
+    }
+
+    .portal-submit-btn:hover:not(:disabled) {
+      background: var(--color-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .portal-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* State banners */
+    .portal-state-view {
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .state-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-gold-soft);
+      border: 1px solid var(--color-gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--color-gold);
+    }
+
+    .state-icon.error-state {
+      background: rgba(220, 53, 69, 0.1);
+      border-color: #dc3545;
+      color: #e57373;
+    }
+
+    .portal-footer {
+      border-top: 1px solid var(--color-border);
+      padding: 1.25rem 0;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Film Grain Texture Overlay -->
+  <svg class="grain-overlay" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+
+  <div class="portal-shell">
+
+    <!-- Top Navigation Header -->
+    <header class="portal-nav">
+      <div class="container">
+        <a href="index.html" class="portal-brand">
+          <img src="images/giridharan.jpg" alt="Giridharan G V" class="portal-avatar">
+          <div class="portal-brand-text">
+            <h1>Giridharan G V</h1>
+            <p>Frontline Operations Leadership &bull; Chennai, India</p>
+          </div>
+        </a>
+
+        <a href="index.html" class="btn btn-secondary btn-sm">
+          <span>View Portfolio</span>
+          <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="portal-main">
+      <div class="container">
+
+        <!-- Form Card Container -->
+        <div class="portal-card" id="formCard">
+
+          <!-- Normal Form View -->
+          <div id="formSection">
+            <div class="portal-badge">Colleague Endorsement Invitation</div>
+            <h2 class="portal-title">Share Your Experience Working with Giridharan</h2>
+            <p class="portal-subtitle">
+              Thank you for taking a few minutes to share an authentic recommendation. Your feedback provides recruiters and partners genuine insight into our shared operational journey.
+            </p>
+
+            <div class="invitation-alert" id="tokenAlert">
+              Verified Invitation Token: <strong id="tokenDisplayBadge">Checking invitation token...</strong>
+            </div>
+
+            <form id="colleagueFeedbackForm" onsubmit="handleFeedbackSubmission(event)">
+
+              <!-- Row 1: Full Name & Designation -->
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="colleagueName">Your Full Name <span class="required">*</span></label>
+                  <input type="text" id="colleagueName" class="form-input" placeholder="e.g., Karthik Subramanian" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="colleagueRole">Your Designation / Role <span class="required">*</span></label>
+                  <input type="text" id="colleagueRole" class="form-input" placeholder="e.g., Operations Manager, QA Lead" required>
+                </div>
+              </div>
+
+              <!-- Row 2: Company & Working Period -->
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="colleagueCompany">Company / Organization <span class="required">*</span></label>
+                  <input type="text" id="colleagueCompany" class="form-input" placeholder="e.g., Scope e-Knowledge Center, Lumina" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="colleagueWorkPeriod">Working Period with Giridharan <span class="required">*</span></label>
+                  <input type="text" id="colleagueWorkPeriod" class="form-input" placeholder="e.g., June 2021 – March 2024 (3 years)" required>
+                  <div class="form-hint">Mention the approximate months or years you overlapped.</div>
+                </div>
+              </div>
+
+              <!-- Row 3: Professional Relationship -->
+              <div class="form-group">
+                <label class="form-label" for="colleagueRelationship">Professional Relationship <span class="required">*</span></label>
+                <select id="colleagueRelationship" class="form-select" required>
+                  <option value="" disabled selected>Select how you worked together...</option>
+                  <option value="Colleague / Peer on Same Team">Colleague / Peer on Same Operations Team</option>
+                  <option value="Managed Giridharan Directly">Managed Giridharan Directly (Senior Leadership)</option>
+                  <option value="Reported to Giridharan">Reported to Giridharan / Guided by Giridharan</option>
+                  <option value="Cross-Functional Collaborator">Cross-Functional Partner (Quality / Training / Logistics)</option>
+                  <option value="Client / Business Partner">Client / External Partner</option>
+                </select>
+              </div>
+
+              <!-- Row 4: Written Feedback with Prompt Helpers -->
+              <div class="form-group">
+                <label class="form-label" for="colleagueContent">Your Written Endorsement / Recommendation <span class="required">*</span></label>
+                
+                <div class="prompt-chips" aria-label="Clickable inspiration topics">
+                  <span class="prompt-chip" onclick="insertPromptTopic('shift leadership under pressure')">+ Shift Leadership</span>
+                  <span class="prompt-chip" onclick="insertPromptTopic('SOP compliance and process precision')">+ SOP Compliance</span>
+                  <span class="prompt-chip" onclick="insertPromptTopic('crew mentorship and multi-shift coordination')">+ Team Coordination</span>
+                  <span class="prompt-chip" onclick="insertPromptTopic('calm problem resolution and guest satisfaction')">+ Problem Solving</span>
+                </div>
+
+                <textarea id="colleagueContent" class="form-textarea" rows="5" placeholder="Share what stood out regarding Giridharan's work ethic, operational consistency, team coordination, or leadership during your time together..." required minlength="40"></textarea>
+                <div class="form-hint">A concise 2 to 4 sentence testimonial is ideal. Minimum 40 characters.</div>
+              </div>
+
+              <!-- Row 5: Optional LinkedIn Profile URL -->
+              <div class="form-group">
+                <label class="form-label" for="colleagueLinkedin">LinkedIn Profile URL <span style="font-size:0.75rem; color:var(--color-text-muted);">(Optional &mdash; enhances authenticity)</span></label>
+                <input type="url" id="colleagueLinkedin" class="form-input" placeholder="https://linkedin.com/in/your-profile">
+              </div>
+
+              <!-- Consent Checkbox -->
+              <div class="consent-box">
+                <input type="checkbox" id="colleagueConsent" required>
+                <label for="colleagueConsent">
+                  I consent to having my feedback, name, role, and company displayed as an executive testimonial on Giridharan's verified portfolio.
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="submitBtn" class="portal-submit-btn">
+                <span>Submit Colleague Recommendation</span>
+                <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+
+            </form>
+          </div>
+
+          <!-- State: Success View -->
+          <div id="successState" class="portal-state-view" style="display:none;">
+            <div class="state-icon">
+              <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2.5;"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 class="portal-title">Thank You for Your Endorsement!</h2>
+            <p class="portal-subtitle" style="max-width:500px; margin: 0 auto 2rem auto;">
+              Your testimonial has been securely delivered to Giridharan. Once he reviews it in his Admin App, it will be published to the executive endorsements section.
+            </p>
+            <a href="index.html" class="btn btn-primary">Return to Portfolio</a>
+          </div>
+
+          <!-- State: Invalid or Expired Token View -->
+          <div id="errorState" class="portal-state-view" style="display:none;">
+            <div class="state-icon error-state">
+              <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2.5;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h2 class="portal-title" id="errorTitle">Invitation Link Expired</h2>
+            <p class="portal-subtitle" id="errorMessage" style="max-width:500px; margin: 0 auto 2rem auto;">
+              This single-use colleague recommendation link has already been submitted or is no longer valid. If you still wish to submit feedback, please ask Giridharan for a fresh link.
+            </p>
+            <a href="index.html" class="btn btn-secondary">Visit Portfolio Home</a>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <div class="container">
+        &copy; <span id="portalYear"></span> Giridharan G V &bull; Verified Operations Portfolio &bull; Confidential Colleague Portal
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Shared Data Adapter -->
+  <script src="assets/portfolio-bridge.js"></script>
+
+  <script>
+    /* -------------------------------------------------------------
+       FEEDBACK PORTAL CONTROLLER
+       Validates token, handles pre-population, and safely submits
+       ------------------------------------------------------------- */
+    document.getElementById('portalYear').textContent = new Date().getFullYear();
+
+    var currentToken = '';
+
+    // Extract token from URL parameter (?token=...)
+    function getTokenFromUrl() {
+      var params = new URLSearchParams(window.location.search);
+      return params.get('token') || '';
+    }
+
+    // Helper for prompt topic chips
+    function insertPromptTopic(topic) {
+      var textarea = document.getElementById('colleagueContent');
+      if (!textarea.value.trim()) {
+        textarea.value = 'Giridharan consistently demonstrated strong ' + topic + '. ';
+      } else {
+        textarea.value += ' ' + topic.charAt(0).toUpperCase() + topic.slice(1) + ' was evident throughout our time together.';
+      }
+      textarea.focus();
+    }
+
+    // Check token on page load
+    async function initPortal() {
+      await PortfolioBridge.init();
+      currentToken = getTokenFromUrl();
+
+      var tokenBadge = document.getElementById('tokenDisplayBadge');
+      var tokenAlert = document.getElementById('tokenAlert');
+      var data = PortfolioBridge.getData();
+
+      if (!currentToken) {
+        // No token provided in URL
+        tokenBadge.textContent = 'General Direct Invitation';
+        tokenAlert.style.borderColor = 'var(--color-border)';
+        return;
+      }
+
+      // Find token record
+      var tokenRecord = (data.feedbackTokens || []).find(function(t) {
+        return t.token === currentToken;
+      });
+
+      if (!tokenRecord) {
+        // Allow submitting anyway with custom token or warn
+        tokenBadge.textContent = 'Token: ' + currentToken;
+        return;
+      }
+
+      if (tokenRecord.used) {
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('errorState').style.display = 'block';
+        document.getElementById('errorTitle').textContent = 'Single-Use Link Already Completed';
+        document.getElementById('errorMessage').textContent = 'This recommendation link has already been submitted on ' + (tokenRecord.usedAt ? new Date(tokenRecord.usedAt).toLocaleDateString() : 'a previous date') + '. Thank you!';
+        return;
+      }
+
+      // Pre-fill suggested details if available
+      tokenBadge.textContent = 'Verified for ' + tokenRecord.recipientName + ' (' + tokenRecord.suggestedCompany + ')';
+      if (tokenRecord.suggestedCompany && tokenRecord.suggestedCompany !== 'Organization') {
+        document.getElementById('colleagueCompany').value = tokenRecord.suggestedCompany;
+      }
+    }
+
+    // Form submission handler
+    function handleFeedbackSubmission(event) {
+      event.preventDefault();
+
+      var submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('span').textContent = 'Submitting Endorsement...';
+
+      var payload = {
+        token: currentToken || ('direct-' + Date.now().toString(36)),
+        name: document.getElementById('colleagueName').value,
+        role: document.getElementById('colleagueRole').value,
+        company: document.getElementById('colleagueCompany').value,
+        workPeriod: document.getElementById('colleagueWorkPeriod').value,
+        relationship: document.getElementById('colleagueRelationship').value,
+        content: document.getElementById('colleagueContent').value,
+        linkedinUrl: document.getElementById('colleagueLinkedin').value
+      };
+
+      // Submit through bridge
+      var result = PortfolioBridge.submitFeedback(payload);
+
+      setTimeout(function() {
+        if (result.success) {
+          document.getElementById('formSection').style.display = 'none';
+          document.getElementById('successState').style.display = 'block';
+        } else {
+          document.getElementById('formSection').style.display = 'none';
+          document.getElementById('errorState').style.display = 'block';
+          document.getElementById('errorMessage').textContent = result.message;
+        }
+      }, 500);
+    }
+
+    window.addEventListener('DOMContentLoaded', initPortal);
+  </script>
+</body>
+</html>
