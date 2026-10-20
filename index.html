@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Portfolio of Giridharan G V — Operations Executive in Chennai with 7 years of frontline operations leadership across QSR, transit mobility, and hospitality. Certified in Microsoft Excel Data Analysis.">
+  <title>Giridharan G V | Operations Executive — QSR, Mobility & Service Operations</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Typography: Cormorant Garamond for executive headings, Manrope for modern body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Skip link for keyboard accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Full-Screen Maintenance Overlay Board (Controlled live via Admin App) -->
+  <div id="maintenanceOverlayBoard" class="maintenance-screen-overlay" style="display: none;" role="dialog" aria-modal="true">
+    <div class="maintenance-screen-card">
+      <div class="maintenance-screen-icon">
+        <svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: currentColor; fill: none; stroke-width: 2;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div>
+        <span class="maintenance-screen-badge" id="maintOverlayBadge">Scheduled Architecture Upgrade</span>
+        <h2 class="maintenance-screen-title" id="maintOverlayHeading">Portfolio Under Maintenance</h2>
+        <p class="maintenance-screen-msg" id="maintOverlayMsg">
+          We are currently deploying updated enterprise case studies and operational metrics. Service will resume shortly.
+        </p>
+        <div style="font-size: 0.85rem; color: var(--color-gold-bright); margin-bottom: 2rem;">
+          Estimated Return: <strong id="maintOverlayTime">Returning shortly today</strong>
+        </div>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="mailto:dharangiri144@gmail.com" class="btn btn-primary btn-sm">Direct Operations Email</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Maintenance Banner Strip (Controlled live via Admin App) -->
+  <div id="maintenanceBannerStrip" class="maintenance-banner-strip" style="display: none;" role="alert">
+    <span class="status-dot warning" style="width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; display: inline-block;"></span>
+    <span><strong id="maintBannerHeading">Notice:</strong> <span id="maintBannerMsg">Portfolio is undergoing scheduled architecture upgrades.</span> (<span id="maintBannerTime">Returning shortly</span>)</span>
+  </div>
+
+  <!-- Subtle Film Grain Texture Overlay -->
+  <svg class="grain-overlay" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+
+  <!-- -------------------------------------------------------------
+       STICKY HEADER WITH GLASSMORPHISM
+       ------------------------------------------------------------- -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <a href="#hero" class="site-logo" aria-label="Giridharan G V - Home">
+        <!-- Professional avatar in header -->
+        <img src="images/giridharan.jpg" alt="Giridharan G V" class="logo-avatar" width="40" height="40">
+        <div class="logo-text">
+          <span class="logo-name">Giridharan G V</span>
+          <span class="logo-role">Operations Executive • Chennai</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation: 6 Focused Sections -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#numbers" class="nav-link">Impact Metrics</a></li>
+          <li><a href="#certifications" class="nav-link">Certification</a></li>
+          <li><a href="#experience" class="nav-link">Career History</a></li>
+          <li><a href="#skills" class="nav-link">Competencies</a></li>
+          <li id="navLinkMilestones"><a href="#coding-milestones" class="nav-link">Milestones</a></li>
+          <li id="navLinkBuilds" style="display:none;"><a href="#builds" class="nav-link">Builds</a></li>
+          <li id="navLinkTestimonials"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action items: Dark mode toggle & mobile menu -->
+      <div class="header-actions">
+        <!-- Theme Toggle Button -->
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNavDrawer" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-track" aria-hidden="true">
+      <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <ul class="mobile-nav-list">
+      <li><a href="#about" class="mobile-nav-link">About Giridharan</a></li>
+      <li><a href="#numbers" class="mobile-nav-link">Key Impact Metrics</a></li>
+      <li><a href="#certifications" class="mobile-nav-link">Verified Certification</a></li>
+      <li><a href="#experience" class="mobile-nav-link">Career History (7 Years)</a></li>
+      <li><a href="#skills" class="mobile-nav-link">Core Competencies</a></li>
+      <li id="mobileNavLinkMilestones"><a href="#coding-milestones" class="mobile-nav-link">Coding Milestones</a></li>
+      <li id="mobileNavLinkBuilds" style="display:none;"><a href="#builds" class="mobile-nav-link">Web &amp; SaaS Builds</a></li>
+      <li id="mobileNavLinkTestimonials"><a href="#testimonials" class="mobile-nav-link">Colleague Endorsements</a></li>
+      <li><a href="#contact" class="mobile-nav-link">Contact Giridharan</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content">
+
+    <!-- -------------------------------------------------------------
+         HERO SECTION: EXECUTIVE OBSIDIAN & CHAMPAGNE GOLD
+         ------------------------------------------------------------- -->
+    <section class="hero-section theme-dark-fixed" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Left column: Executive operator introduction -->
+          <div class="hero-content" id="about">
+            <div class="hero-badge-wrap">
+              <div class="hero-profile-lockup">
+                <!-- Professional portrait photo of Giridharan G V -->
+                <img src="images/giridharan.jpg" alt="Giridharan G V" class="hero-avatar-img" width="52" height="52">
+                <div class="hero-profile-meta">
+                  <span class="hero-profile-name">
+                    Giridharan G V
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--color-gold)" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  </span>
+                  <span class="hero-profile-role">Operations Executive • Chennai</span>
+                </div>
+                <div class="hero-profile-status">
+                  <span class="status-dot"></span>
+                  Open to Operations Roles
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-headline-wrap">
+              <h1 class="hero-headline">
+                7 Years Running Frontline Operations Across <strong>QSR, Transit Mobility &amp; Service Teams</strong>.
+              </h1>
+            </div>
+
+            <p class="hero-lead">
+              Operations professional with <strong>7 years of verified experience</strong> across QSR, hospitality, and transport operations. Most recently <strong>Executive – Operations</strong> at <strong>IntrCity SmartBus</strong>, coordinating 9 daily buses with 14 captains across 5 southern corridors and handling 1,836 trips.
+            </p>
+            <p class="hero-lead-secondary">
+              Previously <strong>Customer Experience Manager</strong> at <strong>Chaayos</strong>, leading teams of 6–10 and driving food cost control, wastage reduction, and SOP compliance. Certified in <strong>Microsoft Excel Data Analysis</strong> (GUVI / IITM Research Park). Targeting <strong>Shift Manager, Assistant Restaurant Manager, and Operations roles</strong>.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#experience" class="btn btn-primary">
+                View Career History
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#skills" class="btn btn-outline-dark">
+                Explore Competencies
+              </a>
+              <a href="#contact" class="btn btn-text-link">
+                Get in Touch &rarr;
+              </a>
+            </div>
+
+            <div class="hero-credentials-strip">
+              <div class="cred-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>7 Years</strong> Operations</span>
+              </div>
+              <div class="cred-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span><strong>1,836</strong> Bus Trips</span>
+              </div>
+              <div class="cred-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span><strong>40+</strong> Crew Certified</span>
+              </div>
+              <div class="cred-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                <span><strong>MS Excel</strong> Certified</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: Framed Executive Portrait Card -->
+          <div class="hero-portrait-frame">
+            <div class="hero-portrait-card">
+              <div class="portrait-photo-wrap">
+                <!-- Professional portrait photo of Giridharan G V -->
+                <img src="images/giridharan.jpg" alt="Giridharan G V - Operations Executive" class="hero-main-photo" width="460" height="540">
+                <div class="portrait-gradient-overlay" aria-hidden="true"></div>
+                <div class="portrait-floating-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  Verified Executive
+                </div>
+                <div class="portrait-floating-location">
+                  Chennai, Tamil Nadu
+                </div>
+              </div>
+
+              <div class="portrait-info-block">
+                <div class="portrait-info-header">
+                  <div>
+                    <span class="portrait-role-badge">Executive Profile</span>
+                    <h3 class="portrait-name">Giridharan G V</h3>
+                    <p class="portrait-sub">Operations Executive &amp; Multi-Unit Store Lead</p>
+                  </div>
+                  <div class="portrait-exp-badge">
+                    <span class="exp-number">7</span>
+                    <span class="exp-unit">Years</span>
+                  </div>
+                </div>
+
+                <div class="portrait-quick-specs">
+                  <div class="spec-row">
+                    <span class="spec-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+                    </span>
+                    <div class="spec-text">
+                      <strong>QSR & Store Operations</strong>
+                      <span>Chaayos Customer Experience Manager • Taco Bell Buddie Trainer</span>
+                    </div>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="15" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                    </span>
+                    <div class="spec-text">
+                      <strong>Fleet Dispatch &amp; Transit Logistics</strong>
+                      <span>IntrCity SmartBus • 9 Buses • 14 Captains • 1,836 Trips</span>
+                    </div>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </span>
+                    <div class="spec-text">
+                      <strong>Data Modeling &amp; Analytics</strong>
+                      <span>MS Excel Data Analyst • Process Optimization &amp; P&amp;L</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider></div>
+
+    <!-- -------------------------------------------------------------
+         KEY IMPACT METRICS
+         ------------------------------------------------------------- -->
+    <section class="section-compact numbers-section" id="numbers" aria-label="Key Performance Indicators">
+      <div class="container">
+        <div class="numbers-grid">
+          <div class="metric-card reveal stagger-1">
+            <div class="metric-number">1,836</div>
+            <div class="metric-label">SmartBus Trips Handled</div>
+            <div class="metric-sub">Coordinated across 5 southern intercity corridors.</div>
+          </div>
+
+          <div class="metric-card reveal stagger-2">
+            <div class="metric-number">50k<span>+</span></div>
+            <div class="metric-label">Passengers Supported</div>
+            <div class="metric-sub">Across IntrCity route operations and onboard service.</div>
+          </div>
+
+          <div class="metric-card reveal stagger-3">
+            <div class="metric-number">9</div>
+            <div class="metric-label">Daily Intercity Buses</div>
+            <div class="metric-sub">Managed with 14 captains, CCTV, and live GPS coordination.</div>
+          </div>
+
+          <div class="metric-card reveal stagger-4">
+            <div class="metric-number">40<span>+</span></div>
+            <div class="metric-label">Team Members Trained</div>
+            <div class="metric-sub">Certified at Taco Bell on speed, portion, and food hygiene.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider></div>
+
+    <!-- -------------------------------------------------------------
+         CERTIFICATIONS SECTION
+         ------------------------------------------------------------- -->
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-eyebrow">Verified Accreditations</span>
+          <h2 class="section-title">Certifications &amp; Technical Credentials</h2>
+          <p class="section-intro">
+            Formal technical qualification in advanced data analytics, spreadsheet architecture, and operational process design.
+          </p>
+        </div>
+
+        <div class="cert-grid">
+          <div class="cert-card reveal stagger-1">
+            <div class="cert-card-header">
+              <div class="cert-badge-row">
+                <span class="cert-status-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Verified Certificate
+                </span>
+                <span class="cert-issuer-badge">GUVI • IITM Research Park</span>
+              </div>
+              <div class="cert-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+
+            <div class="cert-card-body">
+              <h3 class="cert-title">Microsoft Excel Complete Course – Data Analysis and Spreadsheet Skills</h3>
+              <p class="cert-desc">
+                Comprehensive professional accreditation covering data modeling, formula engineering, PivotTables, VLOOKUP/INDEX-MATCH lookup engines, conditional formatting, and business data analysis.
+              </p>
+
+              <div class="cert-meta-group">
+                <div class="cert-meta-item">
+                  <span class="meta-label">Credential ID:</span>
+                  <div class="cert-id-badge">
+                    <code id="credIdCode">a0KW9795Cjh283121E</code>
+                    <button type="button" class="copy-id-btn" id="copyCredIdBtn" aria-label="Copy Credential ID">Copy</button>
+                  </div>
+                </div>
+                <div class="cert-meta-item">
+                  <span class="meta-label">Issuing Platform:</span>
+                  <span class="meta-value">GUVI Geek Networks</span>
+                </div>
+              </div>
+
+              <div class="cert-skills-strip">
+                <span class="chip">Data Analysis</span>
+                <span class="chip">Spreadsheet Skills</span>
+                <span class="chip">Formulas &amp; Lookups</span>
+                <span class="chip">Data Cleaning</span>
+                <span class="chip">PivotTables</span>
+                <span class="chip">P&amp;L Modeling</span>
+              </div>
+            </div>
+
+            <div class="cert-card-footer">
+              <a href="https://www.guvi.in/share-certificate/a0KW9795Cjh283121E" target="_blank" rel="noopener noreferrer" class="btn btn-primary cert-verify-btn">
+                Verify Credential on GUVI
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <span class="cert-auth-note">Officially verified by GUVI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider></div>
+
+    <!-- -------------------------------------------------------------
+         CAREER HISTORY (7 Years Frontline Operations)
+         ------------------------------------------------------------- -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-eyebrow">Professional Track Record</span>
+          <h2 class="section-title">7 Years of Frontline Operations Leadership</h2>
+          <p class="section-intro">
+            A chronological progression across high-velocity transit fleet logistics, QSR multi-unit store operations, crew training benchmarks, and large-scale hospitality.
+          </p>
+        </div>
+
+        <div class="timeline">
+
+          <!-- ROLE 1: IntrCity SmartBus Executive -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Executive – Operations</h3>
+                  <div class="timeline-company">IntrCity SmartBus • Chennai, Tamil Nadu</div>
+                </div>
+                <span class="timeline-period">Jan 2026 — Aug 2026</span>
+              </div>
+              <p class="timeline-summary">
+                Coordinated daily intercity operations across 5 southern routes, managing fleet continuity, real-time trip execution, captain rosters, and high passenger volume.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Coordinated daily operations for 9 buses across Chennai–Hyderabad, Vijayawada, Bengaluru, Trichy, and Madurai routes, handling 1,836 trips and approximately 40,000–50,000 passengers.</li>
+                <li>Coordinated 14 captains and resolved real-time issues affecting trip execution, crew availability, and service delivery.</li>
+                <li>Handled and resolved 100+ customer and service issues, including NPS-related complaints.</li>
+                <li>Coordinated with bus operators and internal stakeholders on GPS, CCTV, and vehicle-related requirements to support service continuity.</li>
+                <li>Monitored route operations and service compliance to maintain operational standards.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ROLE 2: Chaayos Customer Experience Manager -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Customer Experience Manager</h3>
+                  <div class="timeline-company">Chaayos • Chennai, Tamil Nadu</div>
+                </div>
+                <span class="timeline-period">Sep 2024 — Jan 2026</span>
+              </div>
+              <p class="timeline-summary">
+                Promoted from Cafe Trainer to Customer Experience Manager in recognition of consistent performance and operational quality; led daily shift operations and store P&amp;L support.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Promoted from Cafe Trainer to Customer Experience Manager in recognition of consistent performance and operational quality.</li>
+                <li>Led a team of approximately 6–10, managing 2–3 employees per shift and coordinating manpower for daily shift operations.</li>
+                <li>Managed daily inventory, stock usage, and stock entries, monitoring stock levels and taking corrective action to reduce wastage.</li>
+                <li>Supported food cost control through portion control, stock monitoring, and efficient shift operations.</li>
+                <li>Handled customer complaints and escalations during shifts, working toward timely resolution.</li>
+                <li>Trained team members on SOPs, customer service, and shift activities, maintaining SOP compliance and operational standards.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ROLE 3: IntrCity SmartBus Bus Captain -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Bus Captain</h3>
+                  <div class="timeline-company">IntrCity SmartBus • Chennai, Tamil Nadu</div>
+                </div>
+                <span class="timeline-period">Apr 2023 — Jul 2024</span>
+              </div>
+              <p class="timeline-summary">
+                Managed frontline passenger journey experience, onboard service standards, and en-route issue resolution across 394 intercity bus trips.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Managed passenger service across 394 trips for approximately 8,000–10,000 passengers, maintaining onboard service standards and supporting passenger safety.</li>
+                <li>Handled 100+ customer issues and complaints through direct passenger interaction.</li>
+                <li>Monitored bus cleanliness and amenities and coordinated with the crew for smooth trip operations.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ROLE 4: Taco Bell Buddie Trainer -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Buddie Trainer</h3>
+                  <div class="timeline-company">Taco Bell • Chennai, Tamil Nadu</div>
+                </div>
+                <span class="timeline-period">Mar 2021 — Mar 2023</span>
+              </div>
+              <p class="timeline-summary">
+                Trained 40+ new team members on food preparation and hygiene, leading shift lines and driving portion accuracy to minimize wastage.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Trained 40+ new team members on food preparation, service speed, hygiene procedures, and operational standards.</li>
+                <li>Handled approximately 4–6 team members per shift while supporting inventory accuracy, portion control, and wastage reduction.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ROLE 5: Star Hotels ODC Member -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">ODC Member (Outdoor Catering)</h3>
+                  <div class="timeline-company">Star Hotels • Chennai, Tamil Nadu</div>
+                </div>
+                <span class="timeline-period">Jul 2019 — Mar 2021</span>
+              </div>
+              <p class="timeline-summary">
+                Supported high-volume banquet setups, catering service flow, and guest hospitality standards during large-scale hospitality events.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Assisted in banquet setups, service flow, and guest handling during large-scale events.</li>
+                <li>Maintained high service standards to ensure smooth hospitality operations.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Education Credentials -->
+        <div class="education-box reveal">
+          <h4>Academic Background</h4>
+          <p><strong>SSLC (Secondary School Leaving Certificate)</strong> • Railway Mixed High School, Arakkonam (Jul 2016 — Apr 2018)</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider></div>
+
+    <!-- -------------------------------------------------------------
+         CORE COMPETENCIES & OPERATIONAL SKILLS
+         ------------------------------------------------------------- -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-eyebrow">Skills &amp; Capabilities</span>
+          <h2 class="section-title">Core Competencies</h2>
+          <p class="section-intro">
+            A comprehensive operational capability profile spanning restaurant operations, crew leadership, guest resolution, and multi-corridor transit logistics.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+
+          <div class="skill-card reveal stagger-1">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+            </div>
+            <h3>Restaurant &amp; QSR Operations</h3>
+            <p>End-to-end cafe and QSR operations, shift governance, inventory tracking, portion control, and food cost containment.</p>
+            <div class="skill-chips">
+              <span class="chip">QSR Operations</span>
+              <span class="chip">Shift Management</span>
+              <span class="chip">SOP Compliance</span>
+              <span class="chip">Food Cost Control</span>
+              <span class="chip">Wastage Control</span>
+              <span class="chip">Inventory Management</span>
+              <span class="chip">Portion Control</span>
+              <span class="chip">P&amp;L Support</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal stagger-2">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Team &amp; People Leadership</h3>
+            <p>Structured crew training, manpower planning for multi-shift schedules, captain coordination, and performance standards.</p>
+            <div class="skill-chips">
+              <span class="chip">Team Leadership</span>
+              <span class="chip">Staff Training (40+)</span>
+              <span class="chip">Manpower Planning</span>
+              <span class="chip">Crew Coordination</span>
+              <span class="chip">Performance Management</span>
+              <span class="chip">Shift Scheduling</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal stagger-3">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <h3>Customer &amp; Service Experience</h3>
+            <p>Direct guest engagement, de-escalation of frontline service issues, NPS recovery management, and service quality consistency.</p>
+            <div class="skill-chips">
+              <span class="chip">Customer Experience</span>
+              <span class="chip">Complaint Resolution</span>
+              <span class="chip">Escalation Resolution</span>
+              <span class="chip">NPS Resolution</span>
+              <span class="chip">Service Quality</span>
+              <span class="chip">Guest Handling</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal stagger-4">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="15" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            </div>
+            <h3>Route Operations &amp; Analytics</h3>
+            <p>Territory route execution, GPS/CCTV vehicle monitoring, operator coordination, operational compliance, and Excel analysis.</p>
+            <div class="skill-chips">
+              <span class="chip">Territory &amp; Route Ops</span>
+              <span class="chip">Operator Coordination</span>
+              <span class="chip">GPS &amp; CCTV Coordination</span>
+              <span class="chip">Operational Compliance</span>
+              <span class="chip">Real-Time Issue Resolution</span>
+              <span class="chip">MS Excel Certified</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider id="dividerMilestones"></div>
+
+    <!-- -------------------------------------------------------------
+         OPTIONAL SECTION 1: CODING MILESTONES & ALGORITHMS (LEETCODE)
+         Controlled via Admin App (Toggle on/off, update counts live)
+         ------------------------------------------------------------- -->
+    <section class="section" id="coding-milestones">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-eyebrow" id="milestonesBadge">Technical Rigor &amp; Problem Solving</span>
+          <h2 class="section-title" id="milestonesTitle">Coding Milestones &amp; Algorithms</h2>
+          <p class="section-intro" id="milestonesSubtitle">
+            Frontline operations intuition backed by algorithmic thinking, data structures, and continuous technical practice.
+          </p>
+        </div>
+
+        <!-- Metrics Grid (LeetCode, Sprints, Data Structures) -->
+        <div class="milestones-grid" id="milestonesStatsGrid">
+          <!-- Dynamically populated from portfolio-bridge.js -->
+        </div>
+
+        <!-- Hackathons & Prototype Builds Showcase -->
+        <div style="margin-top: 3.5rem;">
+          <div class="reveal">
+            <span class="section-eyebrow">Rapid Engineering Sprints</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--color-text); margin: 0 0 0.5rem 0;">Hackathons &amp; Prototype Builds</h3>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">Intensive 24–48 hour prototype builds solving operational logistics and systems friction.</p>
+          </div>
+          <div class="hackathon-cards-grid" id="hackathonsGrid">
+            <!-- Dynamically populated from portfolio-bridge.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider id="dividerBuilds"></div>
+
+    <!-- -------------------------------------------------------------
+         OPTIONAL SECTION 2: BUILDS & SAAS APPLICATIONS
+         Controlled via Admin App (Toggled off by default until ready)
+         ------------------------------------------------------------- -->
+    <section class="section" id="builds" style="display: none;">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-eyebrow">Software Architecture</span>
+          <h2 class="section-title">Web Applications &amp; Builds</h2>
+          <p class="section-intro">
+            Engineered standalone web applications and production-ready tools built with clean code and humanized user experience.
+          </p>
+        </div>
+
+        <div class="builds-grid" id="buildsContainer">
+          <!-- Dynamically populated from portfolio-bridge.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider id="dividerTestimonials"></div>
+
+    <!-- -------------------------------------------------------------
+         OPTIONAL SECTION 3: COLLEAGUE ENDORSEMENTS & TESTIMONIALS
+         Populated via one-time colleague invitation links & admin approval
+         ------------------------------------------------------------- -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-eyebrow">Peer &amp; Leadership Verification</span>
+            <h2 class="section-title">Colleague Endorsements</h2>
+            <p class="section-intro">
+              Verified recommendations from managers, team captains, and cross-functional operations colleagues.
+            </p>
+          </div>
+          <a href="feedback.html" class="btn btn-secondary btn-sm" style="margin-bottom: 1.5rem;">
+            <span>Colleague Portal</span>
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+
+        <div class="testimonials-grid" id="testimonialsContainer">
+          <!-- Dynamically populated from portfolio-bridge.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Section Divider -->
+    <div class="divider-line" data-reveal-divider></div>
+
+    <!-- -------------------------------------------------------------
+         CONTACT SECTION (Direct Email, Phone & Chennai Location)
+         ------------------------------------------------------------- -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+            <span class="section-eyebrow">Initiate Contact</span>
+            <h2 class="section-title">Ready to Discuss Operations Leadership.</h2>
+            <p>
+              Available for Shift Manager, Assistant Restaurant Manager, Operations Executive, and Fleet Operations roles across Chennai and surrounding locations.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method-card">
+                <div class="method-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Direct Email</span>
+                  <span class="method-value" id="emailDisplay">dharangiri144@gmail.com</span>
+                </div>
+                <button type="button" class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address">Copy</button>
+              </div>
+
+              
+
+              <div class="contact-method-card">
+                <div class="method-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Current Location</span>
+                  <span class="method-value">Thiruvallur, Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card reveal stagger-1">
+            <h3 class="form-title">Send a Direct Inquiry</h3>
+            <p class="form-subtitle">Messages launch directly to my primary inbox.</p>
+
+            <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label for="contactName" class="form-label">Your Name</label>
+                <input type="text" id="contactName" class="form-input" placeholder="e.g. Anand Kumar" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email Address</label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="anand@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject" class="form-label">Role or Project Discussion</label>
+                <input type="text" id="contactSubject" class="form-input" placeholder="e.g. Operations Manager Position" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">Message</label>
+                <textarea id="contactMessage" class="form-textarea" rows="4" placeholder="Brief outline of the role, location, or project scope..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit-btn">
+                Send Direct Message
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+
+              <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- -------------------------------------------------------------
+       SITE FOOTER
+       ------------------------------------------------------------- -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>Giridharan G V</h4>
+          <p>Operations Executive • MS Excel Certified • Chennai, Tamil Nadu</p>
+        </div>
+
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#numbers">Metrics</a></li>
+          <li><a href="#certifications">Certification</a></li>
+          <li><a href="#experience">Career</a></li>
+          <li><a href="#skills">Competencies</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear"></span> Giridharan G V. 100% verified experience portfolio.
+        </div>
+
+        <a href="#hero" class="back-to-top-btn" aria-label="Back to top of the page">
+          Back to top
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External Script File -->
+  <!-- Client Data Layer Adapter -->
+  <script src="assets/portfolio-bridge.js"></script>
+  <!-- External Script File -->
+  <script src="script.js" defer></script>
+</body>
+</html>
