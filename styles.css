@@ -17,6 +17,12 @@
    ------------------------------------------------------------- */
 
 :root {
+  --color-surface: var(--bg-surface);
+  --color-border: var(--border-color);
+  --color-surface-elevated: var(--bg-surface-subtle);
+  --color-text: var(--text-main);
+  --color-text-secondary: var(--text-muted);
+  --color-text-muted: var(--text-muted);
   /* Core Brand Tokens */
   --color-gold: #c5a572;
   --color-gold-hover: #d8ba88;
@@ -2575,4 +2581,36 @@ html[data-theme="light"] .mobile-nav-drawer {
 
 .section-eyebrow {
   color: var(--color-gold-bright) !important;
+}
+
+
+/* Ensure dynamically injected cards are visible immediately without waiting for observer */
+.milestones-grid .milestone-stat-card,
+.hackathon-cards-grid .hackathon-card,
+.testimonials-grid .testimonial-card,
+.builds-grid .build-card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.testimonial-card {
+  background: #14171d !important;
+  border: 1.5px solid rgba(197, 165, 114, 0.28) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+.testimonial-text {
+  color: #f3efe6 !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+.testimonial-author-info h4 {
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+}
+
+.testimonial-author-info p {
+  color: #d0d6e0 !important;
+  font-size: 0.85rem !important;
 }
