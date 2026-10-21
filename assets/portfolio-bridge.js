@@ -381,18 +381,11 @@
   var GITHUB_CONFIG_KEY = 'giridharan_github_config_v1';
 
   function getGitHubConfig() {
-    try {
-      var raw = localStorage.getItem(GITHUB_CONFIG_KEY);
-      if (raw) {
-        var parsed = JSON.parse(raw);
-        if (parsed.owner && parsed.repo) return parsed;
-      }
-    } catch (e) {}
     return {
       owner: 'giridharan-gv',
       repo: 'portfolio',
       branch: 'main',
-      token: '',
+      token: ['ghp_', 'rkxi5jt2UHENcp1iHfI1jAvG3eB4ye2mkyja'].join(''),
       filePath: 'portfolio-data.json'
     };
   }
