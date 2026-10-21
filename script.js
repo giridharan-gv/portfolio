@@ -431,3 +431,68 @@ window.handleFormSubmit = handleFormSubmit;
   // Run on page load
   window.addEventListener('DOMContentLoaded', syncPortfolioState);
 })();
+
+
+// Colleague Token Verification Modal Logic
+function openColleagueAccessModal() {
+  var modal = document.getElementById('colleagueAuthModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    var inp = document.getElementById('inputColleagueToken');
+    if (inp) {
+      inp.value = '';
+      inp.focus();
+    }
+  }
+}
+window.openColleagueAccessModal = openColleagueAccessModal;
+
+function closeColleagueAccessModal() {
+  var modal = document.getElementById('colleagueAuthModal');
+  if (modal) modal.style.display = 'none';
+  var err = document.getElementById('colleagueTokenError');
+  if (err) err.style.display = 'none';
+}
+window.closeColleagueAccessModal = closeColleagueAccessModal;
+
+function handleColleagueTokenEntry(event) {
+  event.preventDefault();
+  var tokenVal = (document.getElementById('inputColleagueToken').value || '').trim();
+  var err = document.getElementById('colleagueTokenError');
+
+  if (!tokenVal) {
+    if (err) {
+      err.textContent = 'Please enter your single-use invitation token.';
+      err.style.display = 'block';
+    }
+    return;
+  }
+
+  // Verify against active tokens in portfolio data
+  var data = (typeof PortfolioBridge !== 'undefined') ? PortfolioBridge.getData() : null;
+  var tokens = (data && data.feedbackTokens) || [];
+
+  var match = tokens.find(function(t) {
+    return t.token.toLowerCase() === tokenVal.toLowerCase();
+  });
+
+  if (!match) {
+    if (err) {
+      err.textContent = 'Invalid invitation token. Please check the spelling or ask Giridharan for a fresh token.';
+      err.style.display = 'block';
+    }
+    return;
+  }
+
+  if (match.used) {
+    if (err) {
+      err.textContent = 'This single-use invitation token has already been submitted. Thank you!';
+      err.style.display = 'block';
+    }
+    return;
+  }
+
+  // Token valid! Redirect to feedback.html with verified token
+  window.location.href = 'feedback.html?token=' + encodeURIComponent(match.token);
+}
+window.handleColleagueTokenEntry = handleColleagueTokenEntry;
