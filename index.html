@@ -697,10 +697,10 @@
               Verified recommendations from managers, team captains, and cross-functional operations colleagues.
             </p>
           </div>
-          <a href="feedback.html" class="btn btn-secondary btn-sm" style="margin-bottom: 1.5rem;">
-            <span>Colleague Portal</span>
+          <button type="button" class="btn btn-secondary btn-sm" style="margin-bottom: 1.5rem;" onclick="openColleagueAccessModal()">
+            <span>Submit Recommendation</span>
             <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
+          </button>
         </div>
 
         <div class="testimonials-grid" id="testimonialsContainer">
@@ -831,5 +831,51 @@
   <script src="assets/portfolio-bridge.js"></script>
   <!-- External Script File -->
   <script src="script.js" defer></script>
+
+  <!-- =============================================================
+       COLLEAGUE PORTAL AUTHORIZATION TOKEN SHIELD MODAL
+       Prevents public visitors from submitting feedback without token
+       ============================================================= -->
+  <div id="colleagueAuthModal" class="pin-shield-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="colleagueModalTitle">
+    <div class="pin-card" style="max-width: 480px; text-align: left; padding: 2.5rem 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
+        <span class="badge-approved" style="background: rgba(197, 165, 114, 0.15); color: var(--color-gold-bright); border-color: rgba(197, 165, 114, 0.3);">
+          INVITATION VERIFICATION
+        </span>
+        <button type="button" onclick="closeColleagueAccessModal()" style="background: transparent; border: none; color: #a6adb9; font-size: 1.5rem; cursor: pointer; line-height: 1; padding: 0.2rem;" aria-label="Close modal">&times;</button>
+      </div>
+
+      <h3 id="colleagueModalTitle" style="font-family: var(--font-heading); font-size: 1.75rem; color: #ffffff; margin: 0 0 0.5rem 0;">
+        Colleague Recommendation Access
+      </h3>
+      <p style="font-size: 0.875rem; color: #c5cbd5; line-height: 1.6; margin: 0 0 1.5rem 0;">
+        To maintain 100% verified authentic recommendations, submitting an endorsement requires a <strong>single-use invitation token</strong> issued by Giridharan.
+      </p>
+
+      <form onsubmit="handleColleagueTokenEntry(event)">
+        <div style="margin-bottom: 1.25rem;">
+          <label for="inputColleagueToken" style="display: block; font-size: 0.8125rem; font-weight: 700; color: #e2e6ee; margin-bottom: 0.45rem;">
+            Enter Your Invitation Token
+          </label>
+          <input type="text" id="inputColleagueToken" placeholder="e.g. ref-m490f-8x1z or token-..." required style="width: 100%; box-sizing: border-box; background: #0b0c0e; border: 1.5px solid rgba(197, 165, 114, 0.28); border-radius: var(--radius-sm); padding: 0.85rem 1rem; color: #ffffff; font-family: monospace; font-size: 0.95rem;">
+          <div id="colleagueTokenError" style="color: #e57373; font-size: 0.775rem; margin-top: 0.4rem; display: none;"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button type="submit" class="btn btn-primary" style="flex: 1; justify-content: center; padding: 0.85rem 1.25rem;">
+            Verify &amp; Open Portal
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="closeColleagueAccessModal()" style="padding: 0.85rem 1rem;">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+      <div style="border-top: 1px solid rgba(197, 165, 114, 0.16); margin-top: 1.5rem; padding-top: 1rem; font-size: 0.775rem; color: #8f96a3; line-height: 1.5;">
+        Worked with Giridharan and need an invitation link? Reach out directly via <a href="mailto:dharangiri144@gmail.com" style="color: var(--color-gold-bright); font-weight: 600;">dharangiri144@gmail.com</a>.
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
