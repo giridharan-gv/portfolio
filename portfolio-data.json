@@ -1,6 +1,6 @@
 {
   "settings": {
-    "lastUpdated": "2026-10-20T17:15:00.000Z",
+    "lastUpdated": "2026-10-21T00:56:02.731Z",
     "adminPinHash": "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2",
     "adminPinHint": "Default PIN is 2026 (stored as SHA-256 hash)",
     "maintenanceMode": {
@@ -8,7 +8,8 @@
       "badge": "Scheduled Architecture Upgrade",
       "heading": "Portfolio Under Maintenance",
       "message": "We are currently deploying updated enterprise case studies and operational build logs. Service will resume shortly.",
-      "estimatedReturn": "Returning shortly today"
+      "estimatedReturn": "Returning shortly",
+      "displayMode": "fullscreen"
     },
     "visibility": {
       "hero": true,
@@ -16,7 +17,7 @@
       "certifications": true,
       "experience": true,
       "skills": true,
-      "codingMilestones": true,
+      "codingMilestones": false,
       "builds": false,
       "testimonials": true,
       "contact": true
@@ -58,49 +59,10 @@
         "profileUrl": ""
       }
     ],
-    "hackathons": [
-      {
-        "id": "hackathon-1",
-        "name": "Smart Logistics & Operations Sprint",
-        "organizer": "Regional Tech Innovation Challenge",
-        "year": "2025",
-        "projectTitle": "FleetDispatch — Quick-Turnaround Van Routing",
-        "resultBadge": "Top 10 Finalist",
-        "summary": "Designed a real-time dispatch dashboard calculating route turnaround latency across hub checkpoints."
-      }
-    ]
+    "hackathons": []
   },
   "builds": [],
-  "testimonials": [
-    {
-      "id": "test-sample-1",
-      "token": "approved-scope-01",
-      "name": "Karthik Subramanian",
-      "role": "Operations Manager",
-      "company": "Scope e-Knowledge Center",
-      "workPeriod": "2021 – 2024 (3 yrs)",
-      "relationship": "Colleague / Peer on Senior Operations Team",
-      "content": "Giridharan has an exceptional grip on frontline workflow bottlenecks. Whenever our delivery SLA was under pressure, he brought calm, data-backed operational adjustments that kept turnaround times tight and team morale high.",
-      "status": "approved",
-      "featured": true,
-      "submittedAt": "2026-09-15T11:20:00.000Z",
-      "approvedAt": "2026-09-16T09:00:00.000Z"
-    },
-    {
-      "id": "test-sample-2",
-      "token": "approved-lumina-02",
-      "name": "Priyanka Nair",
-      "role": "Senior Quality Analyst",
-      "company": "Lumina Datamatics",
-      "workPeriod": "2019 – 2021 (2 yrs)",
-      "relationship": "Worked closely on Quality Audits & SLA Compliance",
-      "content": "A dependable professional who never cuts corners on quality. Giridharan's documentation habits and procedural clarity made multi-shift handoffs completely frictionless.",
-      "status": "approved",
-      "featured": true,
-      "submittedAt": "2026-08-10T14:45:00.000Z",
-      "approvedAt": "2026-08-11T10:15:00.000Z"
-    }
-  ],
+  "testimonials": [],
   "feedbackTokens": [
     {
       "token": "token-colleague-2026-alpha",
