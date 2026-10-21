@@ -428,8 +428,14 @@ window.handleFormSubmit = handleFormSubmit;
     syncPortfolioState();
   });
 
-  // Run on page load
-  window.addEventListener('DOMContentLoaded', syncPortfolioState);
+  // Run immediately and on page load
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', syncPortfolioState);
+  } else {
+    syncPortfolioState();
+  }
+  // Also run on window load to ensure everything rendered
+  window.addEventListener('load', syncPortfolioState);
 })();
 
 
