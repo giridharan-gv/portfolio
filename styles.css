@@ -32,8 +32,8 @@
   --color-obsidian-surface-elevated: #1a1d22;
   --color-obsidian-glass: rgba(19, 21, 24, 0.75);
   --color-obsidian-border: rgba(197, 165, 114, 0.16);
-  --color-obsidian-text: #f3efe6;
-  --color-obsidian-muted: #8f96a3;
+  --color-obsidian-text: #ffffff;
+  --color-obsidian-muted: #d0d6e0;
 
   /* Light Mode Luxury Foundations */
   --color-luxury-light-base: #f9f7f2;
@@ -692,6 +692,24 @@ html[data-theme="light"] .mobile-nav-drawer {
 }
 .btn:hover svg {
   transform: translateX(4px);
+}
+
+
+.btn-secondary {
+  background: rgba(197, 165, 114, 0.12) !important;
+  color: #ffffff !important;
+  border: 1.5px solid var(--color-gold) !important;
+  backdrop-filter: blur(8px);
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: var(--color-gold) !important;
+  color: #0b0c0e !important;
+  border-color: var(--color-gold-bright) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197, 165, 114, 0.4);
 }
 
 .btn-primary {
@@ -2530,4 +2548,31 @@ html[data-theme="light"] .mobile-nav-drawer {
     width: 36px !important;
     height: 36px !important;
   }
+}
+
+
+/* Global High-Contrast Text Overrides for Dark Mode */
+.section-intro {
+  color: #d8dee8 !important;
+}
+
+.experience-card p,
+.skill-card p,
+.milestone-desc,
+.hackathon-summary,
+.testimonial-text,
+.contact-info p {
+  color: #e2e7ef !important;
+}
+
+.timeline-role-desc {
+  color: #d8dee8 !important;
+}
+
+.company-meta-strip {
+  color: #c5cbd5 !important;
+}
+
+.section-eyebrow {
+  color: var(--color-gold-bright) !important;
 }
