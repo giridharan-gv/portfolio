@@ -1,7 +1,7 @@
 {
   "settings": {
-    "lastUpdated": "2026-10-21T03:05:48.520Z",
-    "adminPinHash": "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2",
+    "lastUpdated": "2026-10-21T04:02:34.882Z",
+    "adminPinHash": "3ea77fc339263dd319e3dab93c288d0afcbd8ba8f96c20cfd6b42b5e8f3cf458",
     "adminPinHint": "Default PIN is 2026 (stored as SHA-256 hash)",
     "maintenanceMode": {
       "enabled": false,
@@ -62,23 +62,7 @@
     "hackathons": []
   },
   "builds": [],
-  "testimonials": [
-    {
-      "id": "feedback-1792550497654",
-      "token": "ref-mvhi9gsa-kxr3hcx0ry",
-      "name": "test",
-      "role": "test",
-      "company": "test",
-      "workPeriod": "test",
-      "relationship": "Reported to Giridharan",
-      "content": "Giridharan consistently demonstrated strong shift leadership under pressure.",
-      "linkedinUrl": "",
-      "status": "approved",
-      "featured": false,
-      "submittedAt": "2026-10-21T02:41:37.654Z",
-      "approvedAt": "2026-10-21T02:41:47.372Z"
-    }
-  ],
+  "testimonials": [],
   "feedbackTokens": [
     {
       "token": "ref-mvhi9gsa-kxr3hcx0ry",
