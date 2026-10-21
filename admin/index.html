@@ -1625,6 +1625,13 @@
     }
 
     async function triggerGitHubSync() {
+      var cfg = PortfolioBridge.getGitHubConfig();
+      if (!cfg.token || !cfg.owner || !cfg.repo) {
+        switchAdminTab('settingsTab');
+        alert('GitHub Setup Needed:\n\nPlease paste your GitHub Personal Access Token in the "Security & PIN" tab below and click "Save GitHub Configuration".');
+        return;
+      }
+
       var btn = document.getElementById('btnSyncNow');
       var topBtn = document.getElementById('topbarSyncBtn');
       if (btn) btn.disabled = true;
@@ -1640,7 +1647,12 @@
       if (res.success) {
         showToast(res.message);
       } else {
-        alert('GitHub Sync: ' + res.message);
+        if (res.status === 404) {
+          switchAdminTab('settingsTab');
+          alert('GitHub Sync (404 Not Found):\n\nGitHub rejected the token or cannot find the repository.\n\nMake sure:\n1. Owner is "giridharan-gv"\n2. Repo is "portfolio"\n3. Your token is pasted in the GitHub Configuration form below with "repo" permission, and click "Save GitHub Configuration".');
+        } else {
+          alert('GitHub Sync: ' + res.message);
+        }
       }
     }
 
