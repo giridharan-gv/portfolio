@@ -1562,11 +1562,25 @@
           '<td><code style="font-size:0.75rem; background:#0b0c0e; padding:0.25rem 0.5rem; border-radius:3px; color:var(--color-gold-bright);">' + item.token + '</code></td>' +
           '<td>' + (item.used ? '<span class="badge-approved">COMPLETED</span>' : '<span class="badge-pending">ACTIVE</span>') + '</td>' +
           '<td>' +
-            '<button type="button" class="btn btn-secondary btn-sm" onclick="copyInviteLink(\'' + inviteUrl + '\')">Copy Link</button>' +
+            '<div style="display:flex; gap:0.4rem;">' +
+              '<button type="button" class="btn btn-secondary btn-sm" onclick="copyInviteLink(\'' + inviteUrl + '\')">Copy Link</button>' +
+              '<button type="button" class="btn btn-secondary btn-sm" onclick="deleteInviteToken(' + idx + ')" style="color:#e57373 !important; border-color:rgba(220,53,69,0.4) !important;">Delete</button>' +
+            '</div>' +
           '</td>' +
         '</tr>';
       }).join('');
     }
+
+    
+    function deleteInviteToken(idx) {
+      if (confirm('Permanently delete this invitation token? The colleague will no longer be able to use it.')) {
+        currentData.feedbackTokens.splice(idx, 1);
+        PortfolioBridge.saveData(currentData);
+        renderTokensTable();
+        showToast('Invitation token deleted successfully. Remember to Push to GitHub.');
+      }
+    }
+    window.deleteInviteToken = deleteInviteToken;
 
     function copyInviteLink(url) {
       if (navigator.clipboard) {
