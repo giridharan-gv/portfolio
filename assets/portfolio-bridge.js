@@ -211,11 +211,19 @@
         ? '../portfolio-data.json'
         : './portfolio-data.json';
 
-      var response = await fetch(jsonPath, { cache: 'no-cache' });
+      // Always add timestamp parameter to bypass aggressive GitHub Pages / browser caching
+      var cacheBuster = '?t=' + Date.now();
+      var response = await fetch(jsonPath + cacheBuster, { cache: 'no-cache' });
+
       if (response.ok) {
         var remote = await response.json();
-        // If local doesn't exist yet, seed with file
-        if (!localStorage.getItem(STORAGE_KEY)) {
+
+        // If remote file has newer or equal lastUpdated timestamp than local storage, sync it!
+        var remoteTime = remote.settings && remote.settings.lastUpdated ? new Date(remote.settings.lastUpdated).getTime() : 0;
+        var localTime = local.settings && local.settings.lastUpdated ? new Date(local.settings.lastUpdated).getTime() : 0;
+
+        // If remote was updated via git push or local storage has no edits, adopt remote
+        if (remoteTime >= localTime || !localStorage.getItem(STORAGE_KEY)) {
           saveData(remote);
           return remote;
         }
