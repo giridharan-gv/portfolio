@@ -611,21 +611,25 @@
       var tokenAlert = document.getElementById('tokenAlert');
       var data = PortfolioBridge.getData();
 
+      // STRICT GATE: If no token provided, lock the portal and demand invitation token
       if (!currentToken) {
-        // No token provided in URL
-        tokenBadge.textContent = 'General Direct Invitation';
-        tokenAlert.style.borderColor = 'var(--color-border)';
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('errorState').style.display = 'block';
+        document.getElementById('errorTitle').textContent = 'Invitation Token Required';
+        document.getElementById('errorMessage').innerHTML = 'Submitting an executive endorsement requires a verified single-use invitation link from Giridharan. If you received an invitation token, please append it to the URL or enter it from the <a href="index.html#testimonials" style="color:var(--color-gold); font-weight:700;">portfolio testimonials section</a>.';
         return;
       }
 
       // Find token record
       var tokenRecord = (data.feedbackTokens || []).find(function(t) {
-        return t.token === currentToken;
+        return t.token.toLowerCase() === currentToken.toLowerCase();
       });
 
       if (!tokenRecord) {
-        // Allow submitting anyway with custom token or warn
-        tokenBadge.textContent = 'Token: ' + currentToken;
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('errorState').style.display = 'block';
+        document.getElementById('errorTitle').textContent = 'Invalid Invitation Token';
+        document.getElementById('errorMessage').textContent = 'The invitation token "' + currentToken + '" was not recognized. Please verify the link or request a fresh token from Giridharan.';
         return;
       }
 
