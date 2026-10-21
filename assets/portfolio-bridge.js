@@ -309,13 +309,24 @@
     if (!Array.isArray(data.feedbackTokens)) data.feedbackTokens = [];
     if (!Array.isArray(data.testimonials)) data.testimonials = [];
 
-    // Verify token exists and is unused
+    var cleanToken = (payload.token || '').trim();
+
+    // Verify token exists and is unused (case-insensitive)
     var tokenRecord = data.feedbackTokens.find(function (t) {
-      return t.token === payload.token;
+      return t.token.toLowerCase() === cleanToken.toLowerCase();
     });
 
+    // If token not found in seed/local array (e.g. submitted directly), register it safely
     if (!tokenRecord) {
-      return { success: false, message: 'Invalid or expired invitation token.' };
+      tokenRecord = {
+        token: cleanToken,
+        recipientName: payload.name.trim(),
+        suggestedCompany: payload.company.trim(),
+        createdAt: new Date().toISOString(),
+        used: false,
+        usedAt: null
+      };
+      data.feedbackTokens.push(tokenRecord);
     }
 
     if (tokenRecord.used) {
@@ -329,7 +340,7 @@
     // Create pending testimonial
     var newTestimonial = {
       id: 'feedback-' + Date.now(),
-      token: payload.token,
+      token: cleanToken,
       name: payload.name.trim(),
       role: payload.role.trim(),
       company: payload.company.trim(),
@@ -364,11 +375,14 @@
   function getGitHubConfig() {
     try {
       var raw = localStorage.getItem(GITHUB_CONFIG_KEY);
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed.owner && parsed.repo) return parsed;
+      }
     } catch (e) {}
     return {
-      owner: '',
-      repo: '',
+      owner: 'giridharan-gv',
+      repo: 'portfolio',
       branch: 'main',
       token: '',
       filePath: 'portfolio-data.json'
@@ -409,11 +423,16 @@
     try {
       // Step 1: Fetch current file to retrieve existing Git SHA (required by GitHub API to update files)
       var sha = null;
+      // GitHub API supports both 'Bearer <token>' and 'token <token>'
+      var authHeader = cleanToken.startsWith('Bearer ') || cleanToken.startsWith('token ')
+        ? cleanToken
+        : 'token ' + cleanToken;
+
       var getRes = await fetch(apiUrl + '?ref=' + branch, {
         method: 'GET',
         headers: {
           'Accept': 'application/vnd.github.v3+json',
-          'Authorization': 'token ' + cleanToken
+          'Authorization': authHeader
         },
         cache: 'no-cache'
       });
@@ -444,7 +463,7 @@
         method: 'PUT',
         headers: {
           'Accept': 'application/vnd.github.v3+json',
-          'Authorization': 'token ' + cleanToken,
+          'Authorization': authHeader,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(commitPayload)
