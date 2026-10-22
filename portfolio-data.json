@@ -1,6 +1,6 @@
 {
   "settings": {
-    "lastUpdated": "2026-10-22T11:07:24.258Z",
+    "lastUpdated": "2026-10-22T13:20:30.130Z",
     "adminPinHash": "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2",
     "adminPinHint": "Default PIN is 2026 (stored as SHA-256 hash)",
     "maintenanceMode": {
@@ -71,23 +71,75 @@
     ]
   },
   "builds": [],
-  "testimonials": [],
+  "testimonials": [
+    {
+      "id": "feedback-1792675228376",
+      "token": "ref-mvjkiwga-yajsd6s8ya",
+      "name": "SafeBuddi",
+      "role": "ffff",
+      "company": "Professional Network",
+      "workPeriod": "frf",
+      "relationship": "Managed Giridharan Directly",
+      "content": "Giridharan consistently demonstrated strong SOP compliance and process precision.  SOP compliance and process precision was evident throughout our time together. SOP compliance and process precision was evident throughout our time together. Crew mentorship and multi-shift coordination was evident throughout our time together.",
+      "linkedinUrl": "",
+      "status": "pending",
+      "featured": false,
+      "submittedAt": "2026-10-22T13:20:28.376Z",
+      "approvedAt": null
+    },
+    {
+      "id": "test-sample-1",
+      "token": "approved-scope-01",
+      "name": "Karthik Subramanian",
+      "role": "Operations Manager",
+      "company": "Scope e-Knowledge Center",
+      "workPeriod": "2021 – 2024 (3 yrs)",
+      "relationship": "Colleague / Peer on Senior Operations Team",
+      "content": "Giridharan has an exceptional grip on frontline workflow bottlenecks. Whenever our delivery SLA was under pressure, he brought calm, data-backed operational adjustments that kept turnaround times tight and team morale high.",
+      "status": "approved",
+      "featured": true,
+      "submittedAt": "2026-09-15T11:20:00.000Z",
+      "approvedAt": "2026-09-16T09:00:00.000Z"
+    },
+    {
+      "id": "test-sample-2",
+      "token": "approved-lumina-02",
+      "name": "Priyanka Nair",
+      "role": "Senior Quality Analyst",
+      "company": "Lumina Datamatics",
+      "workPeriod": "2019 – 2021 (2 yrs)",
+      "relationship": "Worked closely on Quality Audits & SLA Compliance",
+      "content": "A dependable professional who never cuts corners on quality. Giridharan's documentation habits and procedural clarity made multi-shift handoffs completely frictionless.",
+      "status": "approved",
+      "featured": true,
+      "submittedAt": "2026-08-10T14:45:00.000Z",
+      "approvedAt": "2026-08-11T10:15:00.000Z"
+    }
+  ],
   "feedbackTokens": [
     {
-      "token": "ref-mvjemrx2-y5vwwxfvti",
-      "recipientName": "Rajesh",
-      "suggestedCompany": "Chaayos",
-      "createdAt": "2026-10-22T10:34:57.110Z",
+      "token": "token-colleague-2026-alpha",
+      "recipientName": "Operations Colleague",
+      "suggestedCompany": "Scope e-Knowledge Center",
+      "createdAt": "2026-10-20T10:00:00.000Z",
       "used": false,
       "usedAt": null
     },
     {
-      "token": "ref-mvjd4x4u-stszfcygpw",
-      "recipientName": "Viji",
-      "suggestedCompany": "Chaayos",
-      "createdAt": "2026-10-22T09:53:04.446Z",
+      "token": "token-colleague-2026-beta",
+      "recipientName": "Transit & Logistics Lead",
+      "suggestedCompany": "Lumina Datamatics",
+      "createdAt": "2026-10-20T10:00:00.000Z",
       "used": false,
       "usedAt": null
+    },
+    {
+      "token": "ref-mvjkiwga-yajsd6s8ya",
+      "recipientName": "Colleague / Industry Peer",
+      "suggestedCompany": "Professional Network",
+      "createdAt": "2026-10-22T13:20:08.316Z",
+      "used": true,
+      "usedAt": "2026-10-22T13:20:28.376Z"
     }
   ]
 }
